@@ -14,5 +14,8 @@
     "plop": "^2.5.3",
     "typedi": "^0.8.0",
     "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.5"
   }
 }
