@@ -1,0 +1,18 @@
+{
+  "name": "universities-recomendations",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Emchenko Mikhail",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
+    "plop": "^2.5.3",
+    "typedi": "^0.8.0",
+    "typescript": "^3.6.4"
+  }
+}
