@@ -1,26 +1,22 @@
 {
     "compilerOptions": {
-        "allowJs": false,
-        "allowSyntheticDefaultImports": false,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
         "allowUmdGlobalAccess": false,
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
         "alwaysStrict": true,
-        "baseUrl": "./",
         "composite": false,
         "charset": "utf8",
         "checkJs": false,
-        "declaration": true,
         "declarationMap": false,
         "diagnostics": false,
         "disableSizeLimit": true,
         "downlevelIteration": true,
         "emitBOM": false,
-        "emitDeclarationOnly": true,
         "emitDecoratorMetadata": false,
         "esModuleInterop": false,
         "experimentalDecorators": true,
-        "extendedDiagnostic": false,
         "forceConsistentCasingInFileNames": true,
         "importHelpers": false,
         "incremental": false,
@@ -34,6 +30,7 @@
         "listFiles": false,
         "locale": "en",
         "module": "commonjs",
+        "moduleResolution": "node",
         "newLine": "crlf",
         "noEmit": false,
         "noEmitHelpers": false,
@@ -45,19 +42,10 @@
         "noImplicitThis": true,
         "noImplicitUseStrict": false,
         "noLib": false,
-        "noResolve": true,
+        "noResolve": false,
         "noStrictGenericChecks": false,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "paths": {
-            "common": ["./apps/__common__"],
-            "admin": ["./apps/admin"],
-            "authorization": ["./apps/authorization"],
-            "enrollee": ["./apps/enrollee"],
-            "mediator": ["./apps/mediator"],
-            "universities": ["./apps/universities"],
-            "user": ["./apps/user"]
-        },
         "preserveConstEnums": true,
         "preserveSymlinks": true,
         "preserveWatchOutput": false,
@@ -76,5 +64,8 @@
         "traceResolution": false,
         "types": [],
         "version": true
-    }
+    },
+    "exclude": [
+        "node_modules"
+    ]
 }
