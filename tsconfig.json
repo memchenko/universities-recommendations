@@ -6,6 +6,7 @@
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
         "alwaysStrict": true,
+        "baseUrl": "./",
         "composite": false,
         "charset": "utf8",
         "checkJs": false,
@@ -61,7 +62,9 @@
         "suppressExcessPropertyErrors": false,
         "suppressImplicitAnyIndexErrors": true,
         "traceResolution": false,
-        "types": [],
+        "types": [
+            "node"
+        ],
         "version": true
     },
     "exclude": [
