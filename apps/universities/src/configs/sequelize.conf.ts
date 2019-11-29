@@ -11,7 +11,7 @@ export const sequelize = new Sequelize(NAME, USERNAME, PASSWORD, {
         underscored: true,
         freezeTableName: true,
     },
-    models: [__dirname + '/**/*.models.ts'],
+    models: [process.cwd() + '/src/**/*.models.ts'],
 });
 
 sequelize.sync();
