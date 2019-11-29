@@ -61,6 +61,7 @@
         "strictNullChecks": false,
         "suppressExcessPropertyErrors": false,
         "suppressImplicitAnyIndexErrors": true,
+        "target": "ES5",
         "traceResolution": false,
         "types": [
             "node"

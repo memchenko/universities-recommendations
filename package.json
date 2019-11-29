@@ -13,10 +13,12 @@
     "nodemon": "^1.19.4",
     "plop": "^2.5.3",
     "typedi": "^0.8.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.2"
   },
   "dependencies": {
     "@types/node": "^12.12.8",
-    "amqplib": "^0.5.5"
+    "amqplib": "^0.5.5",
+    "glob": "^7.1.6",
+    "ts-node": "^8.5.2"
   }
 }
