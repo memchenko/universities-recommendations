@@ -1,13 +1,16 @@
-import { Model, Table, Column, ForeignKey, PrimaryKey, DataType } from 'sequelize-typescript';
-import DepartmentModel from '../department/Department.model';
+import { Model, Table, Column, ForeignKey, PrimaryKey, DataType, BelongsTo } from 'sequelize-typescript';
+
+import { DepartmentModel } from '@entities/department';
+
+import { ISpecialtyModel } from '.';
 
 @Table
-export default class SpecialtyModel extends Model<SpecialtyModel> {
+export default class SpecialtyModel extends Model<ISpecialtyModel> {
     @PrimaryKey
     @Column({
-        type: DataType.STRING,
+        type: DataType.NUMBER,
     })
-    public id!: string;
+    public id!: number;
 
     @Column({
         type: DataType.STRING,
@@ -16,7 +19,10 @@ export default class SpecialtyModel extends Model<SpecialtyModel> {
 
     @ForeignKey(() => DepartmentModel)
     @Column({
-        type: DataType.STRING,
+        type: DataType.NUMBER,
     })
-    public departmentId!: string;
+    public departmentId!: number;
+
+    @BelongsTo(() => DepartmentModel)
+    public department!: DepartmentModel;
 }

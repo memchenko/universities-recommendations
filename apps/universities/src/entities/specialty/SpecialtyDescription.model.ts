@@ -1,16 +1,23 @@
-import { Model, Table, Column, ForeignKey, DataType } from 'sequelize-typescript';
-import SpecialtyModel from './Specialty.model';
+import { Model, Table, Column, ForeignKey, DataType, BelongsTo } from 'sequelize-typescript';
+
+import {
+    ISpecialtyDescriptionModel,
+    SpecialtyModel
+} from '.';
 
 @Table
-export default class SpecialtyDescriptionModel extends Model<SpecialtyDescriptionModel> {
+export default class SpecialtyDescriptionModel extends Model<ISpecialtyDescriptionModel> {
     @ForeignKey(() => SpecialtyModel)
     @Column({
-        type: DataType.STRING,
+        type: DataType.NUMBER,
     })
-    public specialtyId!: string;
+    public specialtyId!: number;
+
+    @BelongsTo(() => SpecialtyModel)
+    public specialty!: SpecialtyModel;
 
     @Column({
         type: DataType.STRING,
     })
-    public value: string;
+    public value!: string;
 }

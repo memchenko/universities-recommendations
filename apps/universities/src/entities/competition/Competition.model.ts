@@ -1,8 +1,11 @@
-import { Model, Table, ForeignKey, Column, DataType } from 'sequelize-typescript';
-import SpecialtyModel from '../specialty/Specialty.model';
+import { Model, Table, ForeignKey, Column, DataType, BelongsTo } from 'sequelize-typescript';
+
+import { SpecialtyModel } from '@entities/specialty';
+
+import { ICompetitionModel } from '.';
 
 @Table
-export default class CompetitionModel extends Model<CompetitionModel> {
+export default class CompetitionModel extends Model<ICompetitionModel> {
     @Column({
         type: DataType.TINYINT,
     })
@@ -15,7 +18,10 @@ export default class CompetitionModel extends Model<CompetitionModel> {
 
     @ForeignKey(() => SpecialtyModel)
     @Column({
-        type: DataType.STRING,
+        type: DataType.NUMBER,
     })
-    public specialtyId!: string;
+    public specialtyId!: number;
+
+    @BelongsTo(() => SpecialtyModel)
+    public specialty!: SpecialtyModel;
 }

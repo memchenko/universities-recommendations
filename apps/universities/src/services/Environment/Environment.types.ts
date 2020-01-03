@@ -1,13 +1,5 @@
-export interface IEnvironment extends AppConfig {
-    env: AppMode;
-    config: AppConfig;
-}
+export interface IEnvironment<T> {
+    get<K extends keyof T>(name: K): T[K];
 
-export type AppConfig = {
-    port: number;
-};
-
-export const enum AppMode {
-    Dev = 'dev',
-    Prod = 'prod'
+    set<K extends keyof T>(name: K, value: T[K]): void;
 }

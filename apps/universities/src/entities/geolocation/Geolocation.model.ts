@@ -1,15 +1,11 @@
-import { Table, Model, Column, ForeignKey, DataType, Unique } from 'sequelize-typescript';
-import FacultyModel from '../faculty/Faculty.model';
+import { Table, Model, Column, DataType, HasMany } from 'sequelize-typescript';
+
+import { FacultyModel } from '@entities/faculty';
+
+import { IGeolocationModel } from '.';
 
 @Table
-export default class GeolocationModel extends Model<GeolocationModel> {
-    @Unique
-    @ForeignKey(() => FacultyModel)
-    @Column({
-        type: DataType.STRING,
-    })
-    public facultyId!: string;
-
+export default class GeolocationModel extends Model<IGeolocationModel> {
     @Column({
         type: DataType.FLOAT,
     })
@@ -19,4 +15,7 @@ export default class GeolocationModel extends Model<GeolocationModel> {
         type: DataType.FLOAT,
     })
     public latitude: number;
+
+    @HasMany(() => FacultyModel)
+    public faculties: FacultyModel[];
 }

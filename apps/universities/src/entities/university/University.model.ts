@@ -1,12 +1,14 @@
 import { Model, Table, Column, PrimaryKey, Unique, DataType } from 'sequelize-typescript';
 
+import { IUniversityModel } from '.';
+
 @Table
-export default class UniversityModel extends Model<UniversityModel> {
+export default class UniversityModel extends Model<IUniversityModel> {
     @PrimaryKey
     @Column({
-        type: DataType.STRING,
+        type: DataType.NUMBER,
     })
-    public id!: string;
+    public id!: number;
     
     @Unique
     @Column({

@@ -1,13 +1,17 @@
-import { Model, Table, Column, DataType, ForeignKey } from 'sequelize-typescript';
-import DepartmentModel from './Department.model';
+import { Model, Table, Column, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
+
+import { IDepartmentDescriptionModel, DepartmentModel } from '.';
 
 @Table
-export class DepartmentDescriptionModel extends Model<DepartmentDescriptionModel> {
+export class DepartmentDescriptionModel extends Model<IDepartmentDescriptionModel> {
     @ForeignKey(() => DepartmentModel)
     @Column({
-        type: DataType.STRING,
+        type: DataType.NUMBER,
     })
-    public departmentId!: string;
+    public departmentId!: number;
+
+    @BelongsTo(() => DepartmentModel)
+    public department!: DepartmentModel;
 
     @Column({
         type: DataType.STRING,

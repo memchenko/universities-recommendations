@@ -1,24 +1,23 @@
-import APP_CONFIG from '@configs/app.conf.json';
+import { IEnvironment } from '.';
 
-import { IEnvironment, AppMode, AppConfig } from './Environment.types';
+export default class Environment<T> implements IEnvironment<T> {
+    private readonly values = new Map();
 
-export default class Environment implements IEnvironment {
-    constructor() {
-        const env: string = process.env.NODE_ENV || AppMode.Prod;
-        const config: AppConfig | undefined = APP_CONFIG[env];
-
-        if (!config) {
-            throw new Error('No config was provided');
+    public get<K extends keyof T>(name: K): T[K] {
+        if (this.values.has(name)) {
+            return this.values.get(name);
         }
 
-        this.env = env as AppMode;
-        this.config = config;
+        throw new Error(`There is no environment variable "${name}"`);
     }
 
-    public readonly config: AppConfig;
-    public readonly env: AppMode;
+    public set<K extends keyof T>(name: K, value: T[K]): void {
+        if (value !== undefined) {
+            this.values.set(name, value);
+        }
 
-    public get port() {
-        return this.config.port;
+        throw new Error(
+            `No value provided for environment variable "${name}"`
+        );
     }
 }

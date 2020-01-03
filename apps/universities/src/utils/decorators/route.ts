@@ -1,7 +1,8 @@
 import { RouteOptions, HTTPMethod, FastifyInstance } from 'fastify';
 import { Container } from 'typedi';
 
-import { Methods } from '../../constants/types/api-methods';
+import { Methods } from '@constants/types/api-methods';
+import { SERVER } from '@constants/dependencies';
 
 function decorate(method: HTTPMethod) {
     return (
@@ -10,7 +11,7 @@ function decorate(method: HTTPMethod) {
         target: any,
         handlerKey: string,
     ) => {
-        const appInstance: FastifyInstance | undefined = Container.get('app');
+        const appInstance: FastifyInstance | undefined = Container.get(SERVER);
         const options: RouteOptions = {
             method,
             url,

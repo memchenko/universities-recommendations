@@ -1,13 +1,16 @@
-import { Model, Table, Column, ForeignKey, PrimaryKey, DataType } from 'sequelize-typescript';
-import UniversityModel from '../university/University.model';
+import { Model, Table, Column, ForeignKey, PrimaryKey, DataType, BelongsTo } from 'sequelize-typescript';
+
+import { UniversityModel } from '@entities/university';
+
+import { IFacultyModel } from '.';
 
 @Table
-export default class FacultyModel extends Model<FacultyModel> {
+export default class FacultyModel extends Model<IFacultyModel> {
     @PrimaryKey
     @Column({
-        type: DataType.STRING,
+        type: DataType.NUMBER,
     })
-    public id!: string;
+    public id!: number;
 
     @Column({
         type: DataType.STRING,
@@ -16,7 +19,10 @@ export default class FacultyModel extends Model<FacultyModel> {
 
     @ForeignKey(() => UniversityModel)
     @Column({
-        type: DataType.STRING,
+        type: DataType.NUMBER,
     })
-    public universityId!: string;
+    public universityId!: number;
+
+    @BelongsTo(() => UniversityModel)
+    public university!: UniversityModel;
 }
