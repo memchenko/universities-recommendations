@@ -1,7 +1,8 @@
-import { IFacultyModel } from '../faculty/types';
+import FacultyEntity from '../faculty/faculty.entity';
 
-export interface IGeolocationModel {
+export interface IGeolocationEntity {
+    id: number;
     longitude: number;
     latitude: number;
-    faculties: IFacultyModel[];
+    faculties: FacultyEntity[];
 }

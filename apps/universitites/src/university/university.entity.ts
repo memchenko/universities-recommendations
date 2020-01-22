@@ -1,21 +1,17 @@
-import {
-    Model, Table, Column, PrimaryKey, Unique, DataType, AutoIncrement
-} from 'sequelize-typescript';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
-import { IUniversityModel } from './types';
+import FacultyEntity from '../faculty/faculty.entity';
 
-@Table
-export default class UniversityModel extends Model<IUniversityModel> {
-    @AutoIncrement
-    @PrimaryKey
-    @Column({
-        type: DataType.NUMBER,
-    })
+import { IUniversityEntity } from './types';
+
+@Entity('university')
+export default class UniversityEntity implements IUniversityEntity {
+    @PrimaryGeneratedColumn()
     public id!: number;
     
-    @Unique
-    @Column({
-        type: DataType.STRING,
-    })
-    public name!: string;
+    @Column({ type: 'varchar', nullable: false })
+    public title!: string;
+
+    @OneToMany(_ => FacultyEntity, faculty => faculty.university)
+    public faculties!: FacultyEntity[];
 }

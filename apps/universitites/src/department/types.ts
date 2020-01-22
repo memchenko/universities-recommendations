@@ -1,8 +1,9 @@
-import { IFacultyModel } from '../faculty/types';
+import FacultyEntity from '../faculty/faculty.entity';
+import SpecialtyEntity from '../specialty/specialty.entity';
 
-export interface IDepartmentModel {
+export interface IDepartmentEntity {
     id: number;
-    name: string;
-    facultyId: number;
-    faculty: IFacultyModel;
+    title: string;
+    faculty: FacultyEntity;
+    specialties: SpecialtyEntity[];
 }

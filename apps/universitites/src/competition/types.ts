@@ -1,8 +1,9 @@
-import { ISpecialtyModel } from '../specialty/types';
+import SpecialtyEntity from '../specialty/specialty.entity';
 
-export interface ICompetitionModel {
+export interface ICompetitionEntity {
+    id: number;
     /** number of covered slots */
     enrollee: number;
     slots: number;
-    specialty: ISpecialtyModel;
+    specialty: SpecialtyEntity;
 }

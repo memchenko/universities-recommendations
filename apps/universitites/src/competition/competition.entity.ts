@@ -1,18 +1,22 @@
-import { Entity, Column, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
-import SpecialtyModel from '../specialty/specialty.entity';
-import { ICompetitionModel } from './types';
+import SpecialtyEntity from '../specialty/specialty.entity';
 
-@Entity()
-export default class CompetitionModel implements ICompetitionModel {
+import { ICompetitionEntity } from './types';
+
+@Entity('competition')
+export default class CompetitionEntity implements ICompetitionEntity {
+    @PrimaryGeneratedColumn()
+    public id!: number;
+
     @Column({ type: 'int4', nullable: false, default: '0' })
     public enrollee!: number;
 
     @Column({ type: 'int4', nullable: false, default: '0' })
     public slots!: number;
 
-    @OneToMany(_ => SpecialtyModel, specialty => specialty.competitions, {
-        cascade: ['insert', 'remove', 'update'],
+    @ManyToOne(_ => SpecialtyEntity, specialty => specialty.competitions, {
+        cascade: ['remove', 'update'],
     })
-    public specialty!: SpecialtyModel;
+    public specialty!: SpecialtyEntity;
 }

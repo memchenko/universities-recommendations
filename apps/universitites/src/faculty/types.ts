@@ -1,8 +1,9 @@
-import { IUniversityModel } from '../university/types';
+import UniversityEntity from '../university/university.entity';
+import DepartmentEntity from '../department/department.entity';
 
-export interface IFacultyModel {
+export interface IFacultyEntity {
     id: number;
-    name: string;
-    universityId: number;
-    university: IUniversityModel;
+    title: string;
+    university: UniversityEntity;
+    departments: DepartmentEntity[];
 }

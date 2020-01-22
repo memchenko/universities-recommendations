@@ -1,4 +1,7 @@
-export interface IUniversityModel {
+import FacultyEntity from '../faculty/faculty.entity';
+
+export interface IUniversityEntity {
     id: number;
-    name: string;
+    title: string;
+    faculties: FacultyEntity[];
 }

@@ -1,27 +1,25 @@
-import { Table, Model, Column, DataType, BelongsTo, ForeignKey } from 'sequelize-typescript';
+import { PrimaryGeneratedColumn, Column, Entity, ManyToMany, JoinTable } from 'typeorm';
 
-import FacultyModel from '../faculty/faculty.entity';
+import FacultyEntity from '../faculty/faculty.entity';
 
-import { IGeolocationModel } from './types';
+import { IGeolocationEntity } from './types';
 
-@Table
-export default class GeolocationModel extends Model<IGeolocationModel> {
+@Entity('geolocation')
+export default class GeolocationEntity implements IGeolocationEntity {
+    @PrimaryGeneratedColumn()
+    public id!: number;
+
     @Column({
-        type: DataType.FLOAT,
+        type: 'float',
     })
     public longitude!: number;
 
     @Column({
-        type: DataType.FLOAT,
+        type: 'float',
     })
     public latitude!: number;
 
-    @ForeignKey(() => FacultyModel)
-    @Column({
-        type: DataType.INTEGER,
-    })
-    public facultyId!: number;
-
-    @BelongsTo(() => FacultyModel)
-    public faculties!: FacultyModel[];
+    @ManyToMany(_ => FacultyEntity)
+    @JoinTable()
+    public faculties!: FacultyEntity[];
 }

@@ -1,27 +1,25 @@
-import { Model, Table, Column, ForeignKey, PrimaryKey, DataType, BelongsTo } from 'sequelize-typescript';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 
-import UniversityModel from '../university/university.entity';
-import { IFacultyModel } from './types';
+import UniversityEntity from '../university/university.entity';
+import DepartmentEntity from '../department/department.entity';
 
-@Table
-export default class FacultyModel extends Model<IFacultyModel> {
-    @PrimaryKey
-    @Column({
-        type: DataType.NUMBER,
-    })
+import { IFacultyEntity } from './types';
+
+@Entity('faculty')
+export default class FacultyEntity implements IFacultyEntity {
+    @PrimaryGeneratedColumn()
     public id!: number;
 
     @Column({
-        type: DataType.STRING,
+        type: 'varchar',
     })
-    public name!: string;
+    public title!: string;
 
-    @ForeignKey(() => UniversityModel)
-    @Column({
-        type: DataType.NUMBER,
+    @ManyToOne(_ => UniversityEntity, university => university.faculties, {
+        cascade: ['remove', 'update'],
     })
-    public universityId!: number;
+    public university!: UniversityEntity;
 
-    @BelongsTo(() => UniversityModel)
-    public university!: UniversityModel;
+    @OneToMany(_ => DepartmentEntity, department => department.faculty)
+    public departments!: DepartmentEntity[];
 }

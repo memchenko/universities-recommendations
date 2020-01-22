@@ -1,28 +1,25 @@
-import { Model, Table, Column, ForeignKey, PrimaryKey, DataType, BelongsTo } from 'sequelize-typescript';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 
-import DepartmentModel from '../department/department.entity';
+import DepartmentEntity from '../department/department.entity';
+import CompetitionEntity from '../competition/competition.entity';
 
-import { ISpecialtyModel } from './types';
+import { ISpecialtyEntity } from './types';
 
-@Table
-export default class SpecialtyModel extends Model<ISpecialtyModel> {
-    @PrimaryKey
-    @Column({
-        type: DataType.NUMBER,
-    })
+@Entity('specialty')
+export default class SpecialtyEntity implements ISpecialtyEntity {
+    @PrimaryGeneratedColumn()
     public id!: number;
 
     @Column({
-        type: DataType.STRING,
+        type: 'varchar',
     })
-    public name!: string;
+    public title!: string;
 
-    @ForeignKey(() => DepartmentModel)
-    @Column({
-        type: DataType.NUMBER,
+    @ManyToOne(_ => DepartmentEntity, department => department.specialties, {
+        cascade: ['remove', 'update'],
     })
-    public departmentId!: number;
+    public department!: DepartmentEntity;
 
-    @BelongsTo(() => DepartmentModel)
-    public department!: DepartmentModel;
+    @OneToMany(_ => CompetitionEntity, competition => competition.specialty)
+    public competitions!: CompetitionEntity[];
 }

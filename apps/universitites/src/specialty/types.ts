@@ -1,8 +1,9 @@
-import { IDepartmentModel } from '../department/types';
+import DepartmentEntity from '../department/department.entity';
+import CompetitionEntity from '../competition/competition.entity';
 
-export interface ISpecialtyModel {
+export interface ISpecialtyEntity {
     id: number;
-    name: string;
-    departmentId: number;
-    department: IDepartmentModel;
+    title: string;
+    department: DepartmentEntity;
+    competitions: CompetitionEntity[];
 }
