@@ -1,25 +1,17 @@
-export default class {
-    // @Get('/competition/:specialtyId')
-    // public async getCompetition(
-    //     req: FastifyRequest,
-    //     reply: FastifyReply<ServerResponse>
-    // ) {
-    //     const { specialtyId } = req.query;
+import { Controller } from '@nestjs/common';
+import { Crud } from '@nestjsx/crud';
 
-    //     try {
-    //         const competition = await CompetitionModel.findOne({
-    //             where: { specialtyId }
-    //         });
+import CompetitionEntity from './competition.entity';
+import CompetitionService from './competition.service';
 
-    //         if (competition) {
-    //             throw new Error();
-    //         }
-
-    //         const response = JSON.stringify(competition);
-
-    //         reply.code(200).send(response);
-    //     } catch(_) {
-    //         reply.code(404).send(`No competition with "specialtyId" ${specialtyId}`);
-    //     }
-    // }
+@Crud({
+    model: {
+        type: CompetitionEntity,
+    }
+})
+@Controller('competition')
+export default class CompetitionController {
+    constructor(
+        public service: CompetitionService,
+    ) {}
 }

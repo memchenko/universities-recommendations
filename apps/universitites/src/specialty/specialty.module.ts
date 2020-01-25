@@ -1,11 +1,21 @@
 import { Module } from '@nestjs/common';
-
-import providers from './specialty.providers';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import SpecialtyEntity from './specialty.entity';
+import SpecialtyService from './specialty.service';
+import SpecialtyController from './specialty.controller';
 
 @Module({
-    providers,
+    imports: [
+        TypeOrmModule.forFeature([SpecialtyEntity]),
+    ],
     exports: [
-        ...providers,
+        SpecialtyService,
+    ],
+    providers: [
+        SpecialtyService,
+    ],
+    controllers: [
+        SpecialtyController,
     ],
 })
 export default class SpecialtyModule {}

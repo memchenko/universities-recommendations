@@ -1,11 +1,22 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
-import providers from './competition.providers';
-// import CompetitionController from './competition.controller';
+import CompetitionService from './competition.service';
+import CompetitionController from './competition.controller';
+import CompetitionEntity from './competition.entity';
 
 @Module({
-    providers,
-    // controllers: [CompetitionController],
-    exports: providers,
+    imports: [
+        TypeOrmModule.forFeature([CompetitionEntity]),
+    ],
+    providers: [
+        CompetitionService,
+    ],
+    controllers: [
+        CompetitionController,
+    ],
+    exports: [
+        CompetitionService,
+    ],
 })
 export default class CompetitionModule {}

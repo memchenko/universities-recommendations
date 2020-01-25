@@ -1,23 +1,17 @@
-import { Controller, Get, Inject } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Controller } from '@nestjs/common';
+import { Crud } from '@nestjsx/crud';
 
 import UniversityEntity from './university.entity';
-import { UNIVERSITY_REPOSITORY } from './university.providers';
+import UniversityService from './university.service';
 
+@Crud({
+    model: {
+        type: UniversityEntity,
+    }
+})
 @Controller('university')
 export default class UniversityController {
     constructor(
-        @Inject(UNIVERSITY_REPOSITORY)
-        private readonly repository: Repository<UniversityEntity>
+        public service: UniversityService,
     ) {}
-
-    @Get()
-    public async create(): Promise<string> {
-        const university = new UniversityEntity();
-        university.title = 'ФГБОУ тест';
-
-        await this.repository.insert(university);
-
-        return 'Wow OK!';
-    } 
 }

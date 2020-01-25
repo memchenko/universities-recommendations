@@ -20,6 +20,8 @@ export default class GeolocationEntity implements IGeolocationEntity {
     public latitude!: number;
 
     @ManyToMany(_ => FacultyEntity)
-    @JoinTable()
+    @JoinTable({
+        name: 'geolocation_faculty'
+    })
     public faculties!: FacultyEntity[];
 }
