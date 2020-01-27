@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, OneToOne, JoinColumn } from 'typeorm';
 
 import FacultyEntity from '../faculty/faculty.entity';
 import SpecialtyEntity from '../specialty/specialty.entity';
@@ -23,5 +23,6 @@ export default class DepartmentEntity implements IDepartmentEntity {
     public specialties!: SpecialtyEntity[];
 
     @OneToOne(_ => DescriptionEntity)
+    @JoinColumn()
     public description!: DescriptionEntity;
 }
