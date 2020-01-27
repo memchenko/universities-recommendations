@@ -1,7 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
+import { IType } from './types';
+
 @Entity('payment_type')
-export default class PaymentTypeEntity {
+export default class PaymentTypeEntity implements IType {
     @PrimaryGeneratedColumn()
     public id!: number;
 

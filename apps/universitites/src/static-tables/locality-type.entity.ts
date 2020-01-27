@@ -2,8 +2,8 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 import { IType } from './types';
 
-@Entity('teaching_type')
-export default class TeachingTypeEntity implements IType {
+@Entity('locality_type')
+export default class LocalityTypeEntity implements IType {
     @PrimaryGeneratedColumn()
     public id!: number;
 
