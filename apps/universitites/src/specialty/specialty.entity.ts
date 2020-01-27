@@ -7,6 +7,7 @@ import TeachingTypeEntity from '../static-tables/teaching-type.entity';
 import PaymentTypeEntity from '../static-tables/payment-type.entity';
 
 import { ISpecialtyEntity } from './types';
+import SpecialtyAddressEntity from './specialty-address.entity';
 
 @Entity('specialty')
 export default class SpecialtyEntity implements ISpecialtyEntity {
@@ -47,4 +48,7 @@ export default class SpecialtyEntity implements ISpecialtyEntity {
     @OneToOne(_ => PaymentTypeEntity)
     @JoinColumn()
     public paymentType!: PaymentTypeEntity;
+
+    @OneToMany(_ => SpecialtyAddressEntity, address => address.specialty)
+    public addresses!: SpecialtyAddressEntity[];
 }

@@ -1,17 +1,24 @@
-import DepartmentEntity from '../department/department.entity';
-import CompetitionEntity from '../competition/competition.entity';
-import DescriptionEntity from '../description/description.entity';
-import TeachingTypeEntity from '~/static-tables/teaching-type.entity';
-import PaymentTypeEntity from '~/static-tables/payment-type.entity';
+import { IDepartmentEntity } from '../department/types';
+import { ICompetitionEntity } from '../competition/types';
+import { IDescriptionEntity } from '../description/types';
+import { IAddressEntity } from '../address/types';
+import { ITypeEntity } from '../static-tables/types';
 
 export interface ISpecialtyEntity {
     id: number;
     title: string;
-    department: DepartmentEntity;
-    competitions: CompetitionEntity[];
-    description: DescriptionEntity;
-    teachingType: TeachingTypeEntity;
-    paymentType: PaymentTypeEntity;
+    department: IDepartmentEntity;
+    competitions: ICompetitionEntity[];
+    description: IDescriptionEntity;
+    teachingType: ITypeEntity;
+    paymentType: ITypeEntity;
     price: number;
     duration: number;
+    addresses: ISpecialtyAddressEntity[];
+}
+
+export interface ISpecialtyAddressEntity {
+    title: string;
+    specialty: ISpecialtyEntity;
+    address: IAddressEntity;
 }
