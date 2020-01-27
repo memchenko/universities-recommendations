@@ -1,6 +1,6 @@
 import { IType } from '../static-tables/types';
 
-export interface IAddress {
+export interface IAddressEntity {
     id: number;
     country: string;
     region: string;
