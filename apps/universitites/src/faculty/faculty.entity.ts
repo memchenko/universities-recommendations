@@ -1,7 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 
 import UniversityEntity from '../university/university.entity';
 import DepartmentEntity from '../department/department.entity';
+import DescriptionEntity from '../description/description.entity';
 
 import { IFacultyEntity } from './types';
 
@@ -22,4 +23,7 @@ export default class FacultyEntity implements IFacultyEntity {
 
     @OneToMany(_ => DepartmentEntity, department => department.faculty)
     public departments!: DepartmentEntity[];
+
+    @OneToOne(_ => DescriptionEntity)
+    public description!: DescriptionEntity;
 }

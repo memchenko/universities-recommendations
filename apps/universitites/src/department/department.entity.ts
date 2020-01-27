@@ -1,9 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 
 import FacultyEntity from '../faculty/faculty.entity';
 import SpecialtyEntity from '../specialty/specialty.entity';
 
 import { IDepartmentEntity } from './types';
+import DescriptionEntity from '~/description/description.entity';
 
 @Entity('department')
 export default class DepartmentEntity implements IDepartmentEntity {
@@ -20,4 +21,7 @@ export default class DepartmentEntity implements IDepartmentEntity {
 
     @OneToMany(_ => SpecialtyEntity, specialty => specialty.department)
     public specialties!: SpecialtyEntity[];
+
+    @OneToOne(_ => DescriptionEntity)
+    public description!: DescriptionEntity;
 }

@@ -1,7 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 
 import DepartmentEntity from '../department/department.entity';
 import CompetitionEntity from '../competition/competition.entity';
+import DescriptionEntity from '../description/description.entity';
 
 import { ISpecialtyEntity } from './types';
 
@@ -22,4 +23,7 @@ export default class SpecialtyEntity implements ISpecialtyEntity {
 
     @OneToMany(_ => CompetitionEntity, competition => competition.specialty)
     public competitions!: CompetitionEntity[];
+
+    @OneToOne(_ => DescriptionEntity)
+    public description!: DescriptionEntity;
 }

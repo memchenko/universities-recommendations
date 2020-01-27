@@ -1,8 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from 'typeorm';
 
 import FacultyEntity from '../faculty/faculty.entity';
 
 import { IUniversityEntity } from './types';
+import DescriptionEntity from '~/description/description.entity';
 
 @Entity('university')
 export default class UniversityEntity implements IUniversityEntity {
@@ -14,4 +15,7 @@ export default class UniversityEntity implements IUniversityEntity {
 
     @OneToMany(_ => FacultyEntity, faculty => faculty.university)
     public faculties!: FacultyEntity[];
+
+    @OneToOne(_ => DescriptionEntity)
+    public description!: DescriptionEntity;
 }
