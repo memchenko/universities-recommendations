@@ -1,11 +1,19 @@
-import FacultyEntity from '../faculty/faculty.entity';
-import SpecialtyEntity from '../specialty/specialty.entity';
-import DescriptionEntity from '../description/description.entity';
+import { IFacultyEntity } from '../faculty/types';
+import { ISpecialtyEntity } from '../specialty/types';
+import { IDescriptionEntity } from '../description/types';
+import { IAddressEntity } from '../address/types';
 
 export interface IDepartmentEntity {
     id: number;
     title: string;
-    faculty: FacultyEntity;
-    specialties: SpecialtyEntity[];
-    description: DescriptionEntity;
+    faculty: IFacultyEntity;
+    specialties: ISpecialtyEntity[];
+    description: IDescriptionEntity;
+    addresses: IDepartmentAddressEntity[];
+}
+
+export interface IDepartmentAddressEntity {
+    title: string;
+    department: IDepartmentEntity;
+    address: IAddressEntity;
 }

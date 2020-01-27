@@ -5,6 +5,7 @@ import SpecialtyEntity from '../specialty/specialty.entity';
 
 import { IDepartmentEntity } from './types';
 import DescriptionEntity from '~/description/description.entity';
+import DepartmentAddressEntity from './department-address.entity';
 
 @Entity('department')
 export default class DepartmentEntity implements IDepartmentEntity {
@@ -25,4 +26,7 @@ export default class DepartmentEntity implements IDepartmentEntity {
     @OneToOne(_ => DescriptionEntity)
     @JoinColumn()
     public description!: DescriptionEntity;
+
+    @OneToMany(_ => DepartmentAddressEntity, address => address.department)
+    public addresses!: DepartmentAddressEntity[];
 }
