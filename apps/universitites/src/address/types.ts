@@ -1,10 +1,10 @@
-import { IType } from '../static-tables/types';
+import { ITypeEntity } from '../static-tables/types';
 
 export interface IAddressEntity {
     id: number;
     country: string;
     region: string;
-    localityType: IType;
+    localityType: ITypeEntity;
     locality: string;
     street: string;
     building: string;

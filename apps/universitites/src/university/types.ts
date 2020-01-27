@@ -7,6 +7,7 @@ export interface IUniversityEntity {
     title: string;
     faculties: FacultyEntity[];
     description: DescriptionEntity;
+    addresses: IUniversityAddressEntity[];
 }
 
 export interface IUniversityAddressEntity {

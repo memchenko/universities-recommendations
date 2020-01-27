@@ -1,18 +1,24 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import DatabaseModule from '../database/database.module';
-
 import AddressEntity from './address.entity';
-import providers from './address.providers';
+import AddressService from './address.service';
+import AddressController from './address.controller';
 
 @Module({
     imports: [
-        DatabaseModule,
         TypeOrmModule.forFeature([
             AddressEntity,
         ]),
     ],
-    exports: providers,
+    exports: [
+        AddressService
+    ],
+    providers: [
+        AddressService
+    ],
+    controllers: [
+        AddressController,
+    ],
 })
 export default class AddressModule {}

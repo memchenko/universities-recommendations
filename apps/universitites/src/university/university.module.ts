@@ -3,10 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import UniversityEntity from './university.entity';
 import UniversityService from './university.service';
 import UniversityController from './university.controller';
+import UniversityAddressEntity from './university-address.entity';
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([UniversityEntity]),
+        TypeOrmModule.forFeature([
+            UniversityEntity,
+            UniversityAddressEntity
+        ]),
     ],
     exports: [
         UniversityService,
