@@ -5,6 +5,7 @@ import DepartmentEntity from '../department/department.entity';
 import DescriptionEntity from '../description/description.entity';
 
 import { IFacultyEntity } from './types';
+import FacultyAddressEntity from './faculty-address.entity';
 
 @Entity('faculty')
 export default class FacultyEntity implements IFacultyEntity {
@@ -27,4 +28,7 @@ export default class FacultyEntity implements IFacultyEntity {
     @OneToOne(_ => DescriptionEntity)
     @JoinColumn()
     public description!: DescriptionEntity;
+
+    @OneToMany(_ => FacultyAddressEntity, address => address.faculty)
+    public addresses!: FacultyAddressEntity[];
 }
