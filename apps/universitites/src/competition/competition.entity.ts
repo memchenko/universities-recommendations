@@ -1,6 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+    Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany
+} from 'typeorm';
 
 import SpecialtyEntity from '../specialty/specialty.entity';
+import ThresholdEntity from '../threshold/threshold.entity';
 
 import { ICompetitionEntity } from './types';
 
@@ -25,4 +28,7 @@ export default class CompetitionEntity implements ICompetitionEntity {
         cascade: ['remove', 'update'],
     })
     public specialty!: SpecialtyEntity;
+
+    @OneToMany(_ => ThresholdEntity, threshold => threshold.competition)
+    public thresholds!: ThresholdEntity[];
 }
