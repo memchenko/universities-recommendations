@@ -8,6 +8,7 @@ import TeachingTypeEntity from './teaching-type.entity';
 import PaymentTypeEntity from './payment-type.entity';
 import LocalityTypeEntity from './locality-type.entity';
 import SubjectEntity from './subject.entity';
+import PrivilegeTypeEntity from './privilege-type.entity';
 
 @Module({
     imports: [
@@ -17,6 +18,7 @@ import SubjectEntity from './subject.entity';
             PaymentTypeEntity,
             LocalityTypeEntity,
             SubjectEntity,
+            PrivilegeTypeEntity,
         ]),
     ],
     exports: providers,

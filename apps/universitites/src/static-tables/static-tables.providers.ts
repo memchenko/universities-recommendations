@@ -6,11 +6,13 @@ import PaymentTypeEntity from './payment-type.entity';
 import TeachingTypeEntity from './teaching-type.entity';
 import LocalityTypeEntity from './locality-type.entity';
 import SubjectEntity from './subject.entity';
+import PrivilegeTypeEntity from './privilege-type.entity';
 
 export const enum Repositories {
     PaymentType = 'PAYMENT_TYPE',
     TeachingType = 'TEACHING_TYPE',
     LocalityType = 'LOCALITY_TYPE',
+    PrivilegeType = 'PRIVILEGE_TYPE',
     Subject = 'SUBJECT',
 }
 
@@ -37,6 +39,12 @@ export default [
         provide: Repositories.Subject,
         useFactory: (connection: Connection) =>
             connection.getRepository(SubjectEntity),
+        inject: [DATABASE],
+    },
+    {
+        provide: Repositories.PrivilegeType,
+        useFactory: (connection: Connection) =>
+            connection.getRepository(PrivilegeTypeEntity),
         inject: [DATABASE],
     },
 ];

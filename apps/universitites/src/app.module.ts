@@ -10,6 +10,7 @@ import SpecialtyModule from './specialty/specialty.module';
 import UniversityModule from './university/university.module';
 import ThresholdScoreModule from './threshold-score/threshold-score.module';
 import EnrolleeScoreModule from './enrollee-score/enrollee-score.module';
+import PrivilegedModule from './privileged/privileged.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import EnrolleeScoreModule from './enrollee-score/enrollee-score.module';
     UniversityModule,
     ThresholdScoreModule,
     EnrolleeScoreModule,
+    PrivilegedModule,
     TypeOrmModule.forRoot(),
   ],
 })
