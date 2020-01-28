@@ -5,8 +5,7 @@ import CompetitionModule from './competition/competition.module';
 import DepartmentModule from './department/department.module';
 import FacultyModule from './faculty/faculty.module';
 import DatabaseModule from './database/database.module';
-// import GeneralModule from './general/general.module';
-import GeolocationModule from './geolocation/geolocation.module';
+import GeneralModule from './general/general.module';
 import SpecialtyModule from './specialty/specialty.module';
 import UniversityModule from './university/university.module';
 
@@ -16,8 +15,7 @@ import UniversityModule from './university/university.module';
     DatabaseModule,
     DepartmentModule,
     FacultyModule,
-    // GeneralModule,
-    GeolocationModule,
+    GeneralModule,
     SpecialtyModule,
     UniversityModule,
     TypeOrmModule.forRoot(),
