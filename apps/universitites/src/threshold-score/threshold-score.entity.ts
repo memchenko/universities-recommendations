@@ -5,7 +5,7 @@ import SubjectEntity from '../static-tables/subject.entity';
 
 import { IThresholdScoreEntity } from './types';
 
-@Entity('threshold')
+@Entity('threshold_score')
 export default class ThresholdScoreEntity implements IThresholdScoreEntity {
     @ManyToOne(_ => CompetitionEntity, competition => competition.thresholds)
     public competition!: CompetitionEntity;
