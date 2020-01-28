@@ -11,6 +11,7 @@ import UniversityModule from './university/university.module';
 import ThresholdScoreModule from './threshold-score/threshold-score.module';
 import EnrolleeScoreModule from './enrollee-score/enrollee-score.module';
 import PrivilegedModule from './privileged/privileged.module';
+import EnroleeRewardModule from './enrollee-reward/enrolee-reward.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import PrivilegedModule from './privileged/privileged.module';
     ThresholdScoreModule,
     EnrolleeScoreModule,
     PrivilegedModule,
+    EnroleeRewardModule,
     TypeOrmModule.forRoot(),
   ],
 })
