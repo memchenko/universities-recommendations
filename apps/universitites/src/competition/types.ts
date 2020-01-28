@@ -6,4 +6,6 @@ export interface ICompetitionEntity {
     enrollee: number;
     slots: number;
     specialty: SpecialtyEntity;
+    startDate: Date;
+    endDate: Date;
 }

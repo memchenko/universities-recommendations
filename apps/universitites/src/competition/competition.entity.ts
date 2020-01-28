@@ -15,6 +15,12 @@ export default class CompetitionEntity implements ICompetitionEntity {
     @Column({ type: 'int4', nullable: false, default: '0' })
     public slots!: number;
 
+    @Column({ type: 'date' })
+    public startDate!: Date;
+
+    @Column({ type: 'date' })
+    public endDate!: Date;
+
     @ManyToOne(_ => SpecialtyEntity, specialty => specialty.competitions, {
         cascade: ['remove', 'update'],
     })
