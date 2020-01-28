@@ -3,16 +3,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import DatabaseModule from '../database/database.module';
 
+import providers from './static-tables.providers';
 import TeachingTypeEntity from './teaching-type.entity';
 import PaymentTypeEntity from './payment-type.entity';
-import providers from './static-tables.providers';
+import LocalityTypeEntity from './locality-type.entity';
+import SubjectEntity from './subject.entity';
 
 @Module({
     imports: [
         DatabaseModule,
         TypeOrmModule.forFeature([
             TeachingTypeEntity,
-            PaymentTypeEntity
+            PaymentTypeEntity,
+            LocalityTypeEntity,
+            SubjectEntity,
         ]),
     ],
     exports: providers,
