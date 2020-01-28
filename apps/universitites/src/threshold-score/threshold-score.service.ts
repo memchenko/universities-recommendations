@@ -3,13 +3,13 @@ import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import ThresholdEntity from './threshold.entity';
+import ThresholdScoreEntity from './threshold-score.entity';
 
 @Injectable()
-export default class ThresholdService extends TypeOrmCrudService<ThresholdEntity> {
+export default class ThresholdScoreService extends TypeOrmCrudService<ThresholdScoreEntity> {
     constructor(
-        @InjectRepository(ThresholdEntity)
-        readonly repository: Repository<ThresholdEntity>,
+        @InjectRepository(ThresholdScoreEntity)
+        readonly repository: Repository<ThresholdScoreEntity>,
     ) {
         super(repository);
     }

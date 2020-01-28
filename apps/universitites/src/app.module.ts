@@ -8,6 +8,7 @@ import DatabaseModule from './database/database.module';
 import GeneralModule from './general/general.module';
 import SpecialtyModule from './specialty/specialty.module';
 import UniversityModule from './university/university.module';
+import ThresholdScoreModule from './threshold-score/threshold-score.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import UniversityModule from './university/university.module';
     GeneralModule,
     SpecialtyModule,
     UniversityModule,
+    ThresholdScoreModule,
     TypeOrmModule.forRoot(),
   ],
   controllers: [],

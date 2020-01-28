@@ -1,5 +1,5 @@
 import SpecialtyEntity from '../specialty/specialty.entity';
-import { IThresholdEntity } from '../threshold/types';
+import { IThresholdScoreEntity } from '../threshold-score/types';
 
 export interface ICompetitionEntity {
     id: number;
@@ -9,5 +9,5 @@ export interface ICompetitionEntity {
     specialty: SpecialtyEntity;
     startDate: Date;
     endDate: Date;
-    thresholds: IThresholdEntity[];
+    thresholds: IThresholdScoreEntity[];
 }

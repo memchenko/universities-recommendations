@@ -3,7 +3,7 @@ import {
 } from 'typeorm';
 
 import SpecialtyEntity from '../specialty/specialty.entity';
-import ThresholdEntity from '../threshold/threshold.entity';
+import ThresholdScoreEntity from '../threshold-score/threshold-score.entity';
 
 import { ICompetitionEntity } from './types';
 
@@ -29,6 +29,6 @@ export default class CompetitionEntity implements ICompetitionEntity {
     })
     public specialty!: SpecialtyEntity;
 
-    @OneToMany(_ => ThresholdEntity, threshold => threshold.competition)
-    public thresholds!: ThresholdEntity[];
+    @OneToMany(_ => ThresholdScoreEntity, threshold => threshold.competition)
+    public thresholds!: ThresholdScoreEntity[];
 }
