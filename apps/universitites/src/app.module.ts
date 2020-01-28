@@ -9,6 +9,7 @@ import GeneralModule from './general/general.module';
 import SpecialtyModule from './specialty/specialty.module';
 import UniversityModule from './university/university.module';
 import ThresholdScoreModule from './threshold-score/threshold-score.module';
+import EnrolleeScoreModule from './enrollee-score/enrollee-score.module';
 
 @Module({
   imports: [
@@ -20,9 +21,8 @@ import ThresholdScoreModule from './threshold-score/threshold-score.module';
     SpecialtyModule,
     UniversityModule,
     ThresholdScoreModule,
+    EnrolleeScoreModule,
     TypeOrmModule.forRoot(),
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
