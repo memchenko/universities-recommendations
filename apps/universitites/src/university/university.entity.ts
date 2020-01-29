@@ -1,10 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, JoinColumn } from 'typeorm';
 
 import FacultyEntity from '../faculty/faculty.entity';
+import DescriptionEntity from '../description/description.entity';
+import RoleEntity from '../role/role.entity';
 
-import { IUniversityEntity } from './types';
-import DescriptionEntity from '~/description/description.entity';
 import UniversityAddressEntity from './university-address.entity';
+import { IUniversityEntity } from './types';
 
 @Entity('university')
 export default class UniversityEntity implements IUniversityEntity {
@@ -23,4 +24,7 @@ export default class UniversityEntity implements IUniversityEntity {
 
     @OneToMany(_ => UniversityAddressEntity, address => address.university)
     public addresses!: UniversityAddressEntity[];
+
+    @OneToMany(_ => RoleEntity, role => role.university)
+    public roles!: RoleEntity[];
 }
