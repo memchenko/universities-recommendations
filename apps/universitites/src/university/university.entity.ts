@@ -3,6 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, JoinColumn
 import FacultyEntity from '../faculty/faculty.entity';
 import DescriptionEntity from '../description/description.entity';
 import RoleEntity from '../role/role.entity';
+import CourseEntity from '../course/course.entity';
 
 import UniversityAddressEntity from './university-address.entity';
 import { IUniversityEntity } from './types';
@@ -27,4 +28,7 @@ export default class UniversityEntity implements IUniversityEntity {
 
     @OneToMany(_ => RoleEntity, role => role.university)
     public roles!: RoleEntity[];
+
+    @OneToMany(_ => CourseEntity, course => course.university)
+    public courses!: CourseEntity[];
 }

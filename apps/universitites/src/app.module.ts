@@ -13,6 +13,7 @@ import EnrolleeScoreModule from './enrollee-score/enrollee-score.module';
 import PrivilegedModule from './privileged/privileged.module';
 import EnroleeRewardModule from './enrollee-reward/enrolee-reward.module';
 import RoleModule from './role/role.module';
+import CourseModule from './course/course.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import RoleModule from './role/role.module';
     PrivilegedModule,
     EnroleeRewardModule,
     RoleModule,
+    CourseModule,
     TypeOrmModule.forRoot(),
   ],
 })
