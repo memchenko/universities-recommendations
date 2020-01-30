@@ -12,7 +12,7 @@ export default class {{moduleName.kebabCased}}Service {{#if isCrud}}extends Type
     {{#if isCrud}}
     constructor(
         @InjectRepository({{moduleName.kebabCased}}Entity)
-        readonly repository: {{moduleName.kebabCased}}Entity,
+        readonly repository: Repository<{{moduleName.kebabCased}}Entity>,
     ) {
         super(repository);
     }
