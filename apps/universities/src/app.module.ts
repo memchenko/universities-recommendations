@@ -15,7 +15,8 @@ import EnroleeRewardModule from './enrollee-reward/enrolee-reward.module';
 import RoleModule from './role/role.module';
 import CourseModule from './course/course.module';
 import CourseLectorEntity from './course-lector/course-lector.entity';
-import SemecterModule from './semecter/semecter.module';
+import SemesterModule from './semester/semester.module';
+import SemesterProgramModule from './semester-program/semester-program.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import SemecterModule from './semecter/semecter.module';
     RoleModule,
     CourseModule,
     CourseLectorEntity,
-    SemecterModule,
+    SemesterModule,
+    SemesterProgramModule,
     TypeOrmModule.forRoot(),
   ],
 })
