@@ -2,10 +2,10 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'ty
 
 import SpecialtyEntity from '../specialty/specialty.entity';
 
-import { ISemecterEntity } from './types';
+import { ISemesterEntity } from './types';
 
 @Entity('semecter')
-export default class SemecterEntity implements ISemecterEntity {
+export default class SemesterEntity implements ISemesterEntity {
     @PrimaryGeneratedColumn()
     public id!: number;
 

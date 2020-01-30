@@ -1,6 +1,6 @@
 import { ISpecialtyEntity } from '../specialty/types';
 
-export interface ISemecterEntity {
+export interface ISemesterEntity {
     id: number;
     yearNumber: number;
     startDate: Date;
