@@ -1,0 +1,21 @@
+import { Controller } from '@nestjs/common';
+{{#if isCrud}}
+import { Crud } from '@nestjsx/crud';
+
+import {{moduleName.kebabCased}}Entity from './{{moduleName.dashed}}.entity';
+import {{moduleName.kebabCased}}Serice from './{{moduleName.dashed}}.service';
+
+@Crud({
+    model: {
+        type: {{moduleName.kebabCased}}Entity,
+    },
+})
+{{/if}}
+@Controller('{{moduleName.dashed}}')
+export default class {{moduleName.kebabCased}}Controller {
+    {{#if isCrud}}
+    constructor(
+        readonly service: {{moduleName.kebabCased}}Service,
+    ) {}
+    {{/if}}
+}

@@ -1,0 +1,8 @@
+import { Entity } from 'typeorm';
+
+import { I{{moduleName.kebabCased}}Entity } from './types';
+
+@Entity('{{moduleName.snakeCased}}')
+export default class {{moduleName.kebabCased}} implements I{{moduleName.kebabCased}}Entity {
+
+}
