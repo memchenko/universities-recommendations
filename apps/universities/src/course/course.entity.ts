@@ -1,7 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+
+import DescriptionEntity from '../description/description.entity';
+import UniversityEntity from '../university/university.entity';
+import CourseLectorEntity from '../course-lector/course-lector.entity';
+
 import { ICourseEntity } from './types';
-import DescriptionEntity from '~/description/description.entity';
-import UniversityEntity from '~/university/university.entity';
 
 @Entity('course')
 export default class CourseEntity implements ICourseEntity {
@@ -20,4 +23,7 @@ export default class CourseEntity implements ICourseEntity {
 
     @ManyToOne(_ => UniversityEntity, university => university.courses)
     public university!: UniversityEntity;
+
+    @ManyToOne(_ => CourseLectorEntity, lector => lector.courses)
+    public lector!: CourseLectorEntity;
 }

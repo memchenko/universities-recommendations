@@ -14,6 +14,7 @@ import PrivilegedModule from './privileged/privileged.module';
 import EnroleeRewardModule from './enrollee-reward/enrolee-reward.module';
 import RoleModule from './role/role.module';
 import CourseModule from './course/course.module';
+import CourseLectorEntity from './course-lector/course-lector.entity';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import CourseModule from './course/course.module';
     EnroleeRewardModule,
     RoleModule,
     CourseModule,
+    CourseLectorEntity,
     TypeOrmModule.forRoot(),
   ],
 })
