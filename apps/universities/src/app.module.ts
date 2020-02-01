@@ -17,9 +17,14 @@ import CourseModule from './course/course.module';
 import CourseLectorEntity from './course-lector/course-lector.entity';
 import SemesterModule from './semester/semester.module';
 import SemesterProgramModule from './semester-program/semester-program.module';
+import AddressModule from './address/address.module';
+import DescriptionModule from './description/description.module';
+import DictionaryModule from './dictionary/dictionary.module';
 
 @Module({
   imports: [
+    AddressModule,
+    DescriptionModule,
     CompetitionModule,
     DatabaseModule,
     DepartmentModule,
@@ -36,6 +41,7 @@ import SemesterProgramModule from './semester-program/semester-program.module';
     CourseLectorEntity,
     SemesterModule,
     SemesterProgramModule,
+    DictionaryModule,
     TypeOrmModule.forRoot(),
   ],
 })
