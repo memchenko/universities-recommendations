@@ -1,10 +1,10 @@
 import { Entity, ManyToOne, Column } from 'typeorm';
 
 import DictionaryEntity from './dictionary.entity';
-import { IDictionaryListEntity } from './types';
+import { IDictionaryItemEntity } from './types';
 
-@Entity('dictionary-list')
-export default class DictionaryListEntity implements IDictionaryListEntity {
+@Entity('dictionary_item')
+export default class DictionaryListEntity implements IDictionaryItemEntity {
     @ManyToOne(_ => DictionaryEntity, dictionary => dictionary.items, {
         nullable: false,
         cascade: ['remove'],
@@ -14,5 +14,5 @@ export default class DictionaryListEntity implements IDictionaryListEntity {
     @Column({
         type: 'varchar',
     })
-    public item!: string;
+    public title!: string;
 }

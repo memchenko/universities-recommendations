@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
-import DictionaryListEntity from './dictionary-list.entity';
+import DictionaryItemEntity from './dictionary-item.entity';
 import { IDictionaryEntity } from './types';
 
 @Entity('dictionary')
@@ -14,6 +14,6 @@ export default class DictionaryEntity implements IDictionaryEntity {
     })
     public title!: string;
 
-    @OneToMany(_ => DictionaryListEntity, item => item.dictionary)
-    public items!: DictionaryListEntity;
+    @OneToMany(_ => DictionaryItemEntity, item => item.dictionary)
+    public items!: DictionaryItemEntity;
 }

@@ -1,10 +1,10 @@
 export interface IDictionaryEntity {
     id: number;
     title: string;
-    items: IDictionaryListEntity;
+    items: IDictionaryItemEntity;
 }
 
-export interface IDictionaryListEntity {
+export interface IDictionaryItemEntity {
     dictionary: IDictionaryEntity;
-    item: string;
+    title: string;
 }

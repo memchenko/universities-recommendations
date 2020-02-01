@@ -3,13 +3,13 @@ import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import DictionaryListEntity from './dictionary-list.entity';
+import DictionaryItemEntity from './dictionary-item.entity';
 
 @Injectable()
-export default class DictionaryListService extends TypeOrmCrudService<DictionaryListEntity> {
+export default class DictionaryItemService extends TypeOrmCrudService<DictionaryItemEntity> {
     constructor(
-        @InjectRepository(DictionaryListEntity)
-        readonly repository: Repository<DictionaryListEntity>,
+        @InjectRepository(DictionaryItemEntity)
+        readonly repository: Repository<DictionaryItemEntity>,
     ) {
         super(repository);
     }
