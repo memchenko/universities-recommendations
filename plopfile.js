@@ -79,7 +79,7 @@ module.exports = (plop) => {
                         const fileName = suffix === 'types'
                             ? 'types.ts'
                             : `${modifiedAnswers.moduleName.dashed}.${suffix}.ts`;
-                        const directory = `./apps/${modifiedAnswers.project}/src/${modifiedAnswers.moduleName.dashed}`;
+                        const directory = `./apps/${modifiedAnswers.project}/src/modules/${modifiedAnswers.moduleName.dashed}`;
                         return {
                             directory: directory,
                             fileName: fileName,

@@ -1,10 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
 
-import { IAddress } from './types';
-import LocalityTypeEntity from '~/static-tables/locality-type.entity';
+import LocalityTypeEntity from '../static-tables/locality-type.entity';
+import { IAddressEntity } from './types';
 
 @Entity('address')
-export default class AddressEntity implements IAddress {
+export default class AddressEntity implements IAddressEntity {
     @PrimaryGeneratedColumn()
     public id!: number;
 
