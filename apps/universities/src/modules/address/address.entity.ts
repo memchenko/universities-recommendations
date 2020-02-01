@@ -1,9 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, Check } from 'typeorm';
 
-import LocalityTypeEntity from '../static-tables/locality-type.entity';
+import { Dictionary } from '../../constants/entities';
+import DictionaryItemEntity, { TABLE_NAME } from '../dictionary/dictionary-item.entity';
 import { IAddressEntity } from './types';
 
 @Entity('address')
+@Check(`"localityType" = ANY(\
+    select 'id'\
+    from universities.${TABLE_NAME}\
+    where 'dictionaryId' = '${Dictionary.LocalityType}'\
+)`)
 export default class AddressEntity implements IAddressEntity {
     @PrimaryGeneratedColumn()
     public id!: number;
@@ -18,9 +24,11 @@ export default class AddressEntity implements IAddressEntity {
     })
     public region!: string;
 
-    @OneToOne(_ => LocalityTypeEntity)
-    @JoinColumn()
-    public localityType!: LocalityTypeEntity;
+    @OneToOne(_ => DictionaryItemEntity)
+    @JoinColumn({
+        name: 'localityType',
+    })
+    public localityType!: DictionaryItemEntity<Dictionary.LocalityType>;
 
     @Column({
         type: 'varchar',
