@@ -1,13 +1,13 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, Check } from 'typeorm';
 
 import { Dictionary } from '../../constants/entities';
-import DictionaryItemEntity, { TABLE_NAME } from '../dictionary/dictionary-item.entity';
+import DictionaryItemEntity, { DICTIONARY_ITEM_TABLE } from '../dictionary/dictionary-item.entity';
 import { IAddressEntity } from './types';
 
 @Entity('address')
 @Check(`"localityType" = ANY(\
     select 'id'\
-    from universities.${TABLE_NAME}\
+    from 'universities.${DICTIONARY_ITEM_TABLE}'\
     where 'dictionaryId' = '${Dictionary.LocalityType}'\
 )`)
 export default class AddressEntity implements IAddressEntity {
