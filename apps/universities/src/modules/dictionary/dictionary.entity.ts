@@ -4,9 +4,11 @@ import DictionaryItemEntity from './dictionary-item.entity';
 import { IDictionaryEntity } from './types';
 
 @Entity('dictionary')
-export default class DictionaryEntity implements IDictionaryEntity {
-    @PrimaryGeneratedColumn()
-    public id!: number;
+export default class DictionaryEntity<EntityType> implements IDictionaryEntity<EntityType> {
+    @PrimaryGeneratedColumn({
+        type: 'int',
+    })
+    public id!: EntityType;
 
     @Column({
         type: 'varchar',

@@ -3,13 +3,15 @@ import { Entity, ManyToOne, Column } from 'typeorm';
 import DictionaryEntity from './dictionary.entity';
 import { IDictionaryItemEntity } from './types';
 
-@Entity('dictionary_item')
-export default class DictionaryListEntity implements IDictionaryItemEntity {
+export const TABLE_NAME = 'dictionary_item';
+
+@Entity(TABLE_NAME)
+export default class DictionaryItemEntity<EntityType> implements IDictionaryItemEntity<EntityType> {
     @ManyToOne(_ => DictionaryEntity, dictionary => dictionary.items, {
         nullable: false,
         cascade: ['remove'],
     })
-    public dictionary!: DictionaryEntity;
+    public dictionary!: DictionaryEntity<EntityType>;
 
     @Column({
         type: 'varchar',
