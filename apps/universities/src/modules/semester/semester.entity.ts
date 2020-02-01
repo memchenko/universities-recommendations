@@ -27,7 +27,12 @@ export default class SemesterEntity implements ISemesterEntity {
     })
     public endDate!: Date;
 
-    @OneToOne(_ => SpecialtyEntity)
-    @JoinColumn()
+    @OneToOne(_ => SpecialtyEntity, {
+        cascade: ['remove'],
+        nullable: false,
+    })
+    @JoinColumn({
+        name: 'specialty',
+    })
     public specialty!: SpecialtyEntity;
 }

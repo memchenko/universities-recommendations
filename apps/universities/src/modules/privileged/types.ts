@@ -1,6 +1,7 @@
-import { ITypeEntity } from '../static-tables/types';
+import { IDictionaryItemEntity } from '../dictionary/types';
+import { Dictionary } from '../../constants/entities';
 
 export interface PrivilegedEntity {
     userId: number;
-    privilege: ITypeEntity;
+    privilege: IDictionaryItemEntity<Dictionary.PrivilegeType>;
 }

@@ -5,6 +5,7 @@ export interface IDictionaryEntity<EntityType> {
 }
 
 export interface IDictionaryItemEntity<EntityType> {
+    id: number;
     dictionary: IDictionaryEntity<EntityType>;
     title: string;
 }

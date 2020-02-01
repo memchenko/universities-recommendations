@@ -1,7 +1,9 @@
 import { Entity, Column, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
+
+import AddressEntity from '../address/address.entity';
+
 import { IDepartmentAddressEntity } from './types';
 import DepartmentEntity from './department.entity';
-import AddressEntity from '~/address/address.entity';
 
 @Entity('department_address')
 export default class DepartmentAddressEntity implements IDepartmentAddressEntity {
@@ -14,6 +16,8 @@ export default class DepartmentAddressEntity implements IDepartmentAddressEntity
     public department!: DepartmentEntity;
 
     @OneToOne(_ => AddressEntity)
-    @JoinColumn()
+    @JoinColumn({
+        name: 'addressId',
+    })
     public address!: AddressEntity;
 }

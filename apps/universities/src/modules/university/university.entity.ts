@@ -19,8 +19,13 @@ export default class UniversityEntity implements IUniversityEntity {
     @OneToMany(_ => FacultyEntity, faculty => faculty.university)
     public faculties!: FacultyEntity[];
 
-    @OneToOne(_ => DescriptionEntity)
-    @JoinColumn()
+    @OneToOne(_ => DescriptionEntity, {
+        cascade: ['update'],
+        nullable: false,
+    })
+    @JoinColumn({
+        name: 'description',
+    })
     public description!: DescriptionEntity;
 
     @OneToMany(_ => UniversityAddressEntity, address => address.university)

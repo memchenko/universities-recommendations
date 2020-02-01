@@ -7,10 +7,16 @@ import { ISemesterProgramEntity } from './types';
 
 @Entity('semester_program')
 export default class SemesterProgramEntity implements ISemesterProgramEntity {
-    @ManyToOne(_ => SemesterEntity)
+    @ManyToOne(_ => SemesterEntity, {
+        cascade: ['remove'],
+        nullable: false,
+    })
     public semester!: SemesterEntity;
 
-    @ManyToMany(_ => CourseEntity)
+    @ManyToMany(_ => CourseEntity, {
+        cascade: ['update'],
+        nullable: false,
+    })
     @JoinTable({
         name: 'semester_program_course',
     })

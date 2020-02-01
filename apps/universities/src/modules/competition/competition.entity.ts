@@ -12,20 +12,33 @@ export default class CompetitionEntity implements ICompetitionEntity {
     @PrimaryGeneratedColumn()
     public id!: number;
 
-    @Column({ type: 'int4', nullable: false, default: '0' })
+    @Column({
+        type: 'int4',
+        nullable: false,
+        default: '0',
+    })
     public enrollee!: number;
 
-    @Column({ type: 'int4', nullable: false, default: '0' })
+    @Column({
+        type: 'int4',
+        nullable: false,
+        default: '0',
+    })
     public slots!: number;
 
-    @Column({ type: 'date' })
+    @Column({
+        type: 'date',
+    })
     public startDate!: Date;
 
-    @Column({ type: 'date' })
+    @Column({
+        type: 'date',
+    })
     public endDate!: Date;
 
     @ManyToOne(_ => SpecialtyEntity, specialty => specialty.competitions, {
-        cascade: ['remove', 'update'],
+        cascade: ['remove'],
+        nullable: false,
     })
     public specialty!: SpecialtyEntity;
 

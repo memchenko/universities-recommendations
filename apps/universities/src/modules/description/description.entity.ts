@@ -7,6 +7,8 @@ export default class DescriptionEntity implements IDescriptionEntity {
     @PrimaryGeneratedColumn()
     public id!: number;
 
-    @Column({ type: 'varchar' })
+    @Column({
+        type: 'varchar',
+    })
     public value!: string;
 }

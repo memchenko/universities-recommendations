@@ -1,10 +1,16 @@
-import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, Check } from 'typeorm';
 
-import SubjectEntity from '../static-tables/subject.entity';
+import DictionaryItemEntity, { DICTIONARY_ITEM_TABLE } from '../dictionary/dictionary-item.entity';
+import { Dictionary } from '../../constants/entities';
 
 import { IEnrolleeScoreEntity } from './types';
 
 @Entity('enrollee_score')
+@Check(`"subject" = ANY(\
+    select 'id'\
+    from 'universities.${DICTIONARY_ITEM_TABLE}'\
+    where 'dictionaryId' = '${Dictionary.Subject}'\
+)`)
 export default class EnrolleeScoreEntity implements IEnrolleeScoreEntity {
     @Column({
         type: 'int',
@@ -12,9 +18,14 @@ export default class EnrolleeScoreEntity implements IEnrolleeScoreEntity {
     })
     public userId!: number;
 
-    @OneToOne(_ => SubjectEntity)
-    @JoinColumn()
-    public subject!: SubjectEntity;
+    @OneToOne(_ => DictionaryItemEntity, {
+        cascade: ['remove'],
+        nullable: false,
+    })
+    @JoinColumn({
+        name: 'subject',
+    })
+    public subject!: DictionaryItemEntity<Dictionary.Subject>;
 
     @Column({
         type: 'int',

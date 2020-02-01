@@ -2,7 +2,8 @@ import { IDepartmentEntity } from '../department/types';
 import { ICompetitionEntity } from '../competition/types';
 import { IDescriptionEntity } from '../description/types';
 import { IAddressEntity } from '../address/types';
-import { ITypeEntity } from '../static-tables/types';
+import { IDictionaryItemEntity } from '../dictionary/types';
+import { Dictionary } from '../../constants/entities';
 
 export interface ISpecialtyEntity {
     id: number;
@@ -10,8 +11,8 @@ export interface ISpecialtyEntity {
     department: IDepartmentEntity;
     competitions: ICompetitionEntity[];
     description: IDescriptionEntity;
-    teachingType: ITypeEntity;
-    paymentType: ITypeEntity;
+    teachingType: IDictionaryItemEntity<Dictionary.TeachingType>;
+    paymentType: IDictionaryItemEntity<Dictionary.PaymentType>;
     price: number;
     duration: number;
     addresses: ISpecialtyAddressEntity[];

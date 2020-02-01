@@ -17,13 +17,23 @@ export default class CourseEntity implements ICourseEntity {
     })
     public title!: string;
 
-    @OneToOne(_ => DescriptionEntity)
-    @JoinColumn()
+    @OneToOne(_ => DescriptionEntity, {
+        cascade: ['update'],
+    })
+    @JoinColumn({
+        name: 'description',
+    })
     public description!: DescriptionEntity;
 
-    @ManyToOne(_ => UniversityEntity, university => university.courses)
+    @ManyToOne(_ => UniversityEntity, university => university.courses, {
+        cascade: ['remove'],
+        nullable: false,
+    })
     public university!: UniversityEntity;
 
-    @ManyToOne(_ => CourseLectorEntity, lector => lector.courses)
+    @ManyToOne(_ => CourseLectorEntity, lector => lector.courses, {
+        cascade: ['remove'],
+        nullable: false,
+    })
     public lector!: CourseLectorEntity;
 }

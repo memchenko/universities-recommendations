@@ -24,7 +24,9 @@ export default class AddressEntity implements IAddressEntity {
     })
     public region!: string;
 
-    @OneToOne(_ => DictionaryItemEntity)
+    @OneToOne(_ => DictionaryItemEntity, {
+        cascade: ['update'],
+    })
     @JoinColumn({
         name: 'localityType',
     })

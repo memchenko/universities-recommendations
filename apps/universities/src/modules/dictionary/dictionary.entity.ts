@@ -17,5 +17,5 @@ export default class DictionaryEntity<EntityType> implements IDictionaryEntity<E
     public title!: string;
 
     @OneToMany(_ => DictionaryItemEntity, item => item.dictionary)
-    public items!: DictionaryItemEntity;
+    public items!: DictionaryItemEntity<EntityType>;
 }
