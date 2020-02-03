@@ -15,7 +15,12 @@ export default class FacultyAddressEntity implements IFacultyAddressEntity {
     @ManyToOne(_ => FacultyEntity, faculty => faculty.addresses)
     public faculty!: FacultyEntity;
 
-    @OneToOne(_ => AddressEntity)
-    @JoinColumn()
+    @OneToOne(_ => AddressEntity, {
+        cascade: ['remove'],
+        nullable: false,
+    })
+    @JoinColumn({
+        name: 'address',
+    })
     public address!: AddressEntity;
 }

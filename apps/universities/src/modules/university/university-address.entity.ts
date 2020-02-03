@@ -15,7 +15,12 @@ export default class UniversityAddressEntity implements IUniversityAddressEntity
     @ManyToOne(_ => UniversityEntity, university => university.addresses)
     public university!: UniversityEntity;
 
-    @OneToOne(_ => AddressEntity)
-    @JoinColumn()
+    @OneToOne(_ => AddressEntity, {
+        cascade: ['remove'],
+        nullable: false,
+    })
+    @JoinColumn({
+        name: 'address',
+    })
     public address!: AddressEntity;
 }

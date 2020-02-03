@@ -15,9 +15,12 @@ export default class DepartmentAddressEntity implements IDepartmentAddressEntity
     @ManyToOne(_ => DepartmentEntity, department => department.addresses)
     public department!: DepartmentEntity;
 
-    @OneToOne(_ => AddressEntity)
+    @OneToOne(_ => AddressEntity, {
+        cascade: ['remove'],
+        nullable: false,
+    })
     @JoinColumn({
-        name: 'addressId',
+        name: 'address',
     })
     public address!: AddressEntity;
 }

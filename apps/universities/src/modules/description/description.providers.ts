@@ -1,7 +1,8 @@
 import { Connection } from 'typeorm';
 
-import DescriptionEntity from './description.entity';
 import { DATABASE } from '../database/database.providers';
+
+import DescriptionEntity from './description.entity';
 
 export const DESCRIPTION_REPOSITORY = 'DESCRIPTION_REPOSITORY';
 
