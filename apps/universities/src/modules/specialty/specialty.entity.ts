@@ -18,35 +18,43 @@ import { Dictionary } from '../../constants/entities';
 
 import { ISpecialtyEntity } from './types';
 import SpecialtyAddressEntity from './specialty-address.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity('specialty')
 export default class SpecialtyEntity implements ISpecialtyEntity {
+    @ApiProperty()
     @PrimaryGeneratedColumn()
     public id!: number;
 
+    @ApiProperty()
     @Column({
         type: 'varchar',
     })
     public title!: string;
 
+    @ApiProperty()
     @Column({
         type: 'int4',
     })
     public price!: number;
 
+    @ApiProperty()
     @Column({
         type: 'int4',
     })
     public duration!: number;
 
+    @ApiProperty()
     @ManyToOne(_ => DepartmentEntity, department => department.specialties, {
         cascade: ['remove'],
     })
     public department!: DepartmentEntity;
 
+    @ApiProperty()
     @OneToMany(_ => CompetitionEntity, competition => competition.specialty)
     public competitions!: CompetitionEntity[];
 
+    @ApiProperty()
     @OneToOne(_ => DescriptionEntity, {
         cascade: ['update'],
     })
@@ -55,6 +63,7 @@ export default class SpecialtyEntity implements ISpecialtyEntity {
     })
     public description!: DescriptionEntity;
 
+    @ApiProperty()
     @ManyToMany(_ => DictionaryItemEntity, {
         cascade: ['remove'],
     })
@@ -71,6 +80,7 @@ export default class SpecialtyEntity implements ISpecialtyEntity {
     })
     public teachingType!: DictionaryItemEntity<Dictionary.TeachingType>;
 
+    @ApiProperty()
     @ManyToMany(_ => DictionaryItemEntity, {
         cascade: ['remove'],
     })
@@ -87,6 +97,7 @@ export default class SpecialtyEntity implements ISpecialtyEntity {
     })
     public paymentType!: DictionaryItemEntity<Dictionary.PaymentType>;
 
+    @ApiProperty()
     @OneToMany(_ => SpecialtyAddressEntity, address => address.specialty)
     public addresses!: SpecialtyAddressEntity[];
 }
