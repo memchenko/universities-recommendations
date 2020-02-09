@@ -13,6 +13,7 @@ export interface IFacultyEntity {
 }
 
 export interface IFacultyAddressEntity {
+    id: number;
     title: string;
     faculty: IFacultyEntity;
     address: IAddressEntity;

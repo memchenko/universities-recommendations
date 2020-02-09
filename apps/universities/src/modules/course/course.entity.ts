@@ -21,7 +21,7 @@ export default class CourseEntity implements ICourseEntity {
         cascade: ['update'],
     })
     @JoinColumn({
-        name: 'description',
+        name: 'description_id',
     })
     public description!: DescriptionEntity;
 

@@ -24,7 +24,7 @@ export default class UniversityEntity implements IUniversityEntity {
         nullable: false,
     })
     @JoinColumn({
-        name: 'description',
+        name: 'description_id',
     })
     public description!: DescriptionEntity;
 

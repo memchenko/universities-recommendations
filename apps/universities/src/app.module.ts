@@ -16,7 +16,6 @@ import RoleModule from './modules/role/role.module';
 import CourseModule from './modules/course/course.module';
 import CourseLectorEntity from './modules/course-lector/course-lector.entity';
 import SemesterModule from './modules/semester/semester.module';
-import SemesterProgramModule from './modules/semester-program/semester-program.module';
 import AddressModule from './modules/address/address.module';
 import DescriptionModule from './modules/description/description.module';
 import DictionaryModule from './modules/dictionary/dictionary.module';
@@ -40,7 +39,6 @@ import DictionaryModule from './modules/dictionary/dictionary.module';
     CourseModule,
     CourseLectorEntity,
     SemesterModule,
-    SemesterProgramModule,
     DictionaryModule,
     TypeOrmModule.forRoot(),
   ],

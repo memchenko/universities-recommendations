@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, OneToOne, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 import { IFacultyAddressEntity } from './types';
 import FacultyEntity from './faculty.entity';
@@ -7,6 +7,9 @@ import AddressEntity from '../address/address.entity';
 
 @Entity('faculty_address')
 export default class FacultyAddressEntity implements IFacultyAddressEntity {
+    @PrimaryGeneratedColumn()
+    public id!: number;
+
     @Column({
         type: 'varchar',
     })
@@ -20,7 +23,7 @@ export default class FacultyAddressEntity implements IFacultyAddressEntity {
         nullable: false,
     })
     @JoinColumn({
-        name: 'address',
+        name: 'address_id',
     })
     public address!: AddressEntity;
 }

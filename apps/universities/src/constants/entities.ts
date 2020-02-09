@@ -3,5 +3,5 @@ export const enum Dictionary {
     PaymentType,
     PrivilegeType,
     Subject,
-    TeachingType,
+    TeachingType
 }

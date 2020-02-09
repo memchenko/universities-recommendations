@@ -1,18 +1,23 @@
-import { Entity, ManyToOne, OneToOne, JoinColumn, Column, Check } from 'typeorm';
+import {
+    Entity,
+    ManyToOne,
+    OneToOne,
+    JoinColumn,
+    Column,
+    PrimaryGeneratedColumn,
+} from 'typeorm';
 
 import CompetitionEntity from '../competition/competition.entity';
-import DictionaryItemEntity, { DICTIONARY_ITEM_TABLE } from '../dictionary/dictionary-item.entity';
+import DictionaryItemEntity from '../dictionary/dictionary-item.entity';
 import { Dictionary } from '../../constants/entities';
 
 import { IThresholdScoreEntity } from './types';
 
 @Entity('threshold_score')
-@Check(`"subject" = ANY(\
-    select 'id'\
-    from 'universities.${DICTIONARY_ITEM_TABLE}'\
-    where 'dictionaryId' = ${Dictionary.Subject}\
-)`)
 export default class ThresholdScoreEntity implements IThresholdScoreEntity {
+    @PrimaryGeneratedColumn()
+    public id!: number;
+
     @ManyToOne(_ => CompetitionEntity, competition => competition.thresholds)
     public competition!: CompetitionEntity;
 
@@ -21,7 +26,7 @@ export default class ThresholdScoreEntity implements IThresholdScoreEntity {
         nullable: false,
     })
     @JoinColumn({
-        name: 'subject',
+        name: 'subject_id',
     })
     public subject!: DictionaryItemEntity<Dictionary.Subject>;
 

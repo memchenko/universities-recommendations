@@ -2,6 +2,7 @@ import { Crud } from '@nestjsx/crud';
 import { Controller } from '@nestjs/common';
 
 import SpecialtyEntity from './specialty.entity';
+import SpecialtyService from './specialty.service';
 
 @Crud({
     model: {
@@ -11,6 +12,6 @@ import SpecialtyEntity from './specialty.entity';
 @Controller('specialty')
 export default class SpecialtyController {
     constructor(
-        public service: SpecialtyEntity,
+        public service: SpecialtyService,
     ) {}
 }

@@ -15,6 +15,7 @@ export interface IUniversityEntity {
 }
 
 export interface IUniversityAddressEntity {
+    id: number;
     title: string;
     university: IUniversityEntity;
     address: IAddressEntity;

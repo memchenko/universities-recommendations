@@ -1,25 +1,25 @@
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany, OneToOne, JoinColumn, JoinTable, ManyToMany, Check } from 'typeorm';
+import {
+    Column,
+    Entity,
+    PrimaryGeneratedColumn,
+    ManyToOne,
+    OneToMany,
+    OneToOne,
+    JoinColumn,
+    JoinTable,
+    ManyToMany,
+} from 'typeorm';
 
 import DepartmentEntity from '../department/department.entity';
 import CompetitionEntity from '../competition/competition.entity';
 import DescriptionEntity from '../description/description.entity';
-import DictionaryItemEntity, { DICTIONARY_ITEM_TABLE } from '../dictionary/dictionary-item.entity';
+import DictionaryItemEntity from '../dictionary/dictionary-item.entity';
 import { Dictionary } from '../../constants/entities';
 
 import { ISpecialtyEntity } from './types';
 import SpecialtyAddressEntity from './specialty-address.entity';
 
 @Entity('specialty')
-@Check(`"teachingType" = ANY(\
-    select 'id'\
-    from 'universities.${DICTIONARY_ITEM_TABLE}'\
-    where 'dictionaryId' = ${Dictionary.TeachingType}\
-)`)
-@Check(`"paymentType" = ANY(\
-    select 'id'\
-    from 'universities.${DICTIONARY_ITEM_TABLE}'\
-    where 'dictionaryId' = ${Dictionary.PaymentType}\
-)`)
 export default class SpecialtyEntity implements ISpecialtyEntity {
     @PrimaryGeneratedColumn()
     public id!: number;
@@ -51,7 +51,7 @@ export default class SpecialtyEntity implements ISpecialtyEntity {
         cascade: ['update'],
     })
     @JoinColumn({
-        name: 'description',
+        name: 'description_id',
     })
     public description!: DescriptionEntity;
 
@@ -59,13 +59,13 @@ export default class SpecialtyEntity implements ISpecialtyEntity {
         cascade: ['remove'],
     })
     @JoinTable({
-        name: 'specialty_teaching_types',
+        name: 'specialty_teaching_type',
         joinColumn: {
-            name: 'teachingType',
+            name: 'specialty_id',
             referencedColumnName: 'id',
         },
         inverseJoinColumn: {
-            name: 'specialty',
+            name: 'teaching_type_id',
             referencedColumnName: 'id',
         },
     })
@@ -75,13 +75,13 @@ export default class SpecialtyEntity implements ISpecialtyEntity {
         cascade: ['remove'],
     })
     @JoinTable({
-        name: 'specialty_payment_types',
+        name: 'specialty_payment_type',
         joinColumn: {
-            name: 'paymentType',
+            name: 'specialty_id',
             referencedColumnName: 'id',
         },
         inverseJoinColumn: {
-            name: 'specialty',
+            name: 'payment_type_id',
             referencedColumnName: 'id',
         },
     })

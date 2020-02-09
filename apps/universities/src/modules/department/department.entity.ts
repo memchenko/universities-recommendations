@@ -30,7 +30,7 @@ export default class DepartmentEntity implements IDepartmentEntity {
         cascade: ['update'],
     })
     @JoinColumn({
-        name: 'description',
+        name: 'description_id',
     })
     public description!: DescriptionEntity;
 

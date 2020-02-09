@@ -1,15 +1,13 @@
-import { Entity, Column, OneToOne, JoinColumn, Check } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
 
-import DictionaryItemEntity, { DICTIONARY_ITEM_TABLE } from '../dictionary/dictionary-item.entity';
+import DictionaryItemEntity from '../dictionary/dictionary-item.entity';
 import { Dictionary } from '../../constants/entities';
 
 @Entity('privileged')
-@Check(`"privilege" = ANY(\
-    select 'id'\
-    from 'universities.${DICTIONARY_ITEM_TABLE}'\
-    where 'dictionaryId' = '${Dictionary.PrivilegeType}'\
-)`)
 export default class PrivilegedEntity {
+    @PrimaryGeneratedColumn()
+    public id!: number;
+    
     @Column({
         type: 'int',
         nullable: false,
@@ -21,7 +19,7 @@ export default class PrivilegedEntity {
         nullable: false,
     })
     @JoinColumn({
-        name: 'privilege',
+        name: 'privilege_id',
     })
     public privilege!: DictionaryItemEntity<Dictionary.PrivilegeType>;
 

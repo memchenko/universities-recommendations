@@ -19,6 +19,7 @@ export interface ISpecialtyEntity {
 }
 
 export interface ISpecialtyAddressEntity {
+    id: number;
     title: string;
     specialty: ISpecialtyEntity;
     address: IAddressEntity;

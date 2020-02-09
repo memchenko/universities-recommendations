@@ -30,7 +30,7 @@ export default class FacultyEntity implements IFacultyEntity {
         cascade: ['update'],
     })
     @JoinColumn({
-        name: 'description',
+        name: 'description_id',
     })
     public description!: DescriptionEntity;
 

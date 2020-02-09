@@ -1,17 +1,15 @@
-import { Entity, Column, OneToOne, JoinColumn, Check } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
 
-import DictionaryItemEntity, { DICTIONARY_ITEM_TABLE } from '../dictionary/dictionary-item.entity';
+import DictionaryItemEntity from '../dictionary/dictionary-item.entity';
 import { Dictionary } from '../../constants/entities';
 
 import { IEnrolleeScoreEntity } from './types';
 
 @Entity('enrollee_score')
-@Check(`"subject" = ANY(\
-    select 'id'\
-    from 'universities.${DICTIONARY_ITEM_TABLE}'\
-    where 'dictionaryId' = '${Dictionary.Subject}'\
-)`)
 export default class EnrolleeScoreEntity implements IEnrolleeScoreEntity {
+    @PrimaryGeneratedColumn()
+    public id!: number;
+    
     @Column({
         type: 'int',
         nullable: false,
@@ -23,7 +21,7 @@ export default class EnrolleeScoreEntity implements IEnrolleeScoreEntity {
         nullable: false,
     })
     @JoinColumn({
-        name: 'subject',
+        name: 'subject_id',
     })
     public subject!: DictionaryItemEntity<Dictionary.Subject>;
 

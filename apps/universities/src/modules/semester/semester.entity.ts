@@ -1,10 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
+import {
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    OneToOne,
+    JoinColumn,
+    ManyToMany,
+    JoinTable
+} from 'typeorm';
 
 import SpecialtyEntity from '../specialty/specialty.entity';
+import CourseEntity from '../course/course.entity';
 
 import { ISemesterEntity } from './types';
 
-@Entity('semecter')
+@Entity('semester')
 export default class SemesterEntity implements ISemesterEntity {
     @PrimaryGeneratedColumn()
     public id!: number;
@@ -32,7 +41,16 @@ export default class SemesterEntity implements ISemesterEntity {
         nullable: false,
     })
     @JoinColumn({
-        name: 'specialty',
+        name: 'specialty_id',
     })
     public specialty!: SpecialtyEntity;
+
+    @ManyToMany(_ => CourseEntity, {
+        cascade: ['update'],
+        nullable: false,
+    })
+    @JoinTable({
+        name: 'semester_course',
+    })
+    public courses!: CourseEntity[];
 }

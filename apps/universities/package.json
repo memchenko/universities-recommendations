@@ -19,6 +19,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "node -r ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "migrate": "node -r ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate --name",
     "migration:run": "node -r ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run"
   },
@@ -36,7 +37,8 @@
     "pg-hstore": "^2.3.3",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.3",
-    "typeorm": "^0.2.22"
+    "typeorm": "^0.2.22",
+    "typeorm-naming-strategies": "^1.1.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.9.0",

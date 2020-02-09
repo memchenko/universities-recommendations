@@ -1,4 +1,5 @@
 import { ISpecialtyEntity } from '../specialty/types';
+import { ICourseEntity } from '../course/types';
 
 export interface ISemesterEntity {
     id: number;
@@ -6,4 +7,5 @@ export interface ISemesterEntity {
     startDate: Date;
     endDate: Date;
     specialty: ISpecialtyEntity;
+    courses: ICourseEntity[];
 }

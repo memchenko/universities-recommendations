@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, ManyToOne, OneToOne, JoinColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 import AddressEntity from '../address/address.entity';
 
@@ -7,6 +7,9 @@ import DepartmentEntity from './department.entity';
 
 @Entity('department_address')
 export default class DepartmentAddressEntity implements IDepartmentAddressEntity {
+    @PrimaryGeneratedColumn()
+    public id!: number;
+    
     @Column({
         type: 'varchar',
     })
@@ -20,7 +23,7 @@ export default class DepartmentAddressEntity implements IDepartmentAddressEntity
         nullable: false,
     })
     @JoinColumn({
-        name: 'address',
+        name: 'address_id',
     })
     public address!: AddressEntity;
 }
