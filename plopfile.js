@@ -83,7 +83,7 @@ module.exports = (plop) => {
                         return {
                             directory: directory,
                             fileName: fileName,
-                            templateFile: `./plop-templates/${modifiedAnswers.project}/${suffix}.hbs`,
+                            templateFile: `./plop-templates/${suffix}.hbs`,
                         };
                     };
 
