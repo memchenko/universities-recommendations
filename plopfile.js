@@ -47,10 +47,7 @@ module.exports = (plop) => {
                     type: 'checkbox',
                     name: 'files',
                     message: 'Choose files to generate',
-                    choices: [
-                        'all',
-                        ...files,
-                    ],
+                    choices: files,
                 },
                 {
                     type: 'confirm',
@@ -88,7 +85,7 @@ module.exports = (plop) => {
                     };
 
                     const filesToCreate = files
-                        .filter(suffix => answers.files.includes('all') || answers.files.includes(suffix))
+                        .filter(suffix => answers.files.includes(suffix))
                         .map(mapSuffixToConfig);
 
                     for (const data of filesToCreate) {
