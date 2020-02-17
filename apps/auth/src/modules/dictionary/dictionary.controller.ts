@@ -7,13 +7,11 @@ import DictionaryService from './dictionary.service';
 export const ROUTE = 'dictionary';
 
 @Crud({
-    model: {
-        type: DictionaryEntity,
-    },
+  model: {
+    type: DictionaryEntity,
+  },
 })
 @Controller(ROUTE)
 export default class DictionaryController {
-    constructor(
-        readonly service: DictionaryService,
-    ) {}
+  constructor(readonly service: DictionaryService) {}
 }

@@ -6,11 +6,13 @@ import { Repository } from 'typeorm';
 import FavoriteEntity from './favorite.entity';
 
 @Injectable()
-export default class FavoriteService extends TypeOrmCrudService<FavoriteEntity>{
-    constructor(
-        @InjectRepository(FavoriteEntity)
-        readonly repository: Repository<FavoriteEntity>,
-    ) {
-        super(repository);
-    }
+export default class FavoriteService extends TypeOrmCrudService<
+  FavoriteEntity
+> {
+  constructor(
+    @InjectRepository(FavoriteEntity)
+    readonly repository: Repository<FavoriteEntity>,
+  ) {
+    super(repository);
+  }
 }

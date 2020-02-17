@@ -6,17 +6,9 @@ import SettingService from './setting.service';
 import SettingController from './setting.controller';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([SettingEntity]),
-    ],
-    exports: [
-        SettingService,
-    ],
-    providers: [
-        SettingService,
-    ],
-    controllers: [
-        SettingController,
-    ],
+  imports: [TypeOrmModule.forFeature([SettingEntity])],
+  exports: [SettingService],
+  providers: [SettingService],
+  controllers: [SettingController],
 })
 export default class SettingModule {}

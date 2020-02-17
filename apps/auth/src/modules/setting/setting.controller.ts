@@ -5,13 +5,11 @@ import SettingEntity from './setting.entity';
 import SettingService from './setting.service';
 
 @Crud({
-    model: {
-        type: SettingEntity,
-    },
+  model: {
+    type: SettingEntity,
+  },
 })
 @Controller('setting')
 export default class SettingController {
-    constructor(
-        readonly service: SettingService,
-    ) {}
+  constructor(readonly service: SettingService) {}
 }

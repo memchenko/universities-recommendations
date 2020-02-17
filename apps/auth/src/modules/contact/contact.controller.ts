@@ -5,13 +5,11 @@ import ContactEntity from './contact.entity';
 import ContactService from './contact.service';
 
 @Crud({
-    model: {
-        type: ContactEntity,
-    },
+  model: {
+    type: ContactEntity,
+  },
 })
 @Controller('contact')
 export default class ContactController {
-    constructor(
-        readonly service: ContactService,
-    ) {}
+  constructor(readonly service: ContactService) {}
 }

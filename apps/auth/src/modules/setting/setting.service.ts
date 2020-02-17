@@ -6,11 +6,11 @@ import { Repository } from 'typeorm';
 import SettingEntity from './setting.entity';
 
 @Injectable()
-export default class SettingService extends TypeOrmCrudService<SettingEntity>{
-    constructor(
-        @InjectRepository(SettingEntity)
-        readonly repository: Repository<SettingEntity>,
-    ) {
-        super(repository);
-    }
+export default class SettingService extends TypeOrmCrudService<SettingEntity> {
+  constructor(
+    @InjectRepository(SettingEntity)
+    readonly repository: Repository<SettingEntity>,
+  ) {
+    super(repository);
+  }
 }

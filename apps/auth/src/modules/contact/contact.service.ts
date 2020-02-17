@@ -6,11 +6,11 @@ import { Repository } from 'typeorm';
 import ContactEntity from './contact.entity';
 
 @Injectable()
-export default class ContactService extends TypeOrmCrudService<ContactEntity>{
-    constructor(
-        @InjectRepository(ContactEntity)
-        readonly repository: Repository<ContactEntity>,
-    ) {
-        super(repository);
-    }
+export default class ContactService extends TypeOrmCrudService<ContactEntity> {
+  constructor(
+    @InjectRepository(ContactEntity)
+    readonly repository: Repository<ContactEntity>,
+  ) {
+    super(repository);
+  }
 }

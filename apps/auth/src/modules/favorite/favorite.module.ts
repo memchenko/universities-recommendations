@@ -6,17 +6,9 @@ import FavoriteService from './favorite.service';
 import FavoriteController from './favorite.controller';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([FavoriteEntity]),
-    ],
-    exports: [
-        FavoriteService,
-    ],
-    providers: [
-        FavoriteService,
-    ],
-    controllers: [
-        FavoriteController,
-    ],
+  imports: [TypeOrmModule.forFeature([FavoriteEntity])],
+  exports: [FavoriteService],
+  providers: [FavoriteService],
+  controllers: [FavoriteController],
 })
 export default class FavoriteModule {}

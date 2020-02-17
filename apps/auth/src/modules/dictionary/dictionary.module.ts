@@ -9,23 +9,9 @@ import DictionaryItemService from './dictionary-item.service';
 import DictionaryItemController from './dictionary-item.controller';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([
-            DictionaryEntity,
-            DictionaryItemEntity,
-        ]),
-    ],
-    exports: [
-        DictionaryService,
-        DictionaryItemService,
-    ],
-    providers: [
-        DictionaryService,
-        DictionaryItemService,
-    ],
-    controllers: [
-        DictionaryController,
-        DictionaryItemController,
-    ],
+  imports: [TypeOrmModule.forFeature([DictionaryEntity, DictionaryItemEntity])],
+  exports: [DictionaryService, DictionaryItemService],
+  providers: [DictionaryService, DictionaryItemService],
+  controllers: [DictionaryController, DictionaryItemController],
 })
 export default class DictionaryModule {}
