@@ -12,9 +12,7 @@ exports.default = [
             username: 'auth',
             password: 'password',
             database: 'auth',
-            entities: [
-                __dirname + '/../**/*.entity{.ts,.js}',
-            ],
+            entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         }),
     },
 ];

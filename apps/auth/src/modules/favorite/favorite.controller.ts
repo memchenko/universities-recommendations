@@ -11,5 +11,7 @@ import FavoriteService from './favorite.service';
 })
 @Controller('favorite')
 export default class FavoriteController {
-  constructor(readonly service: FavoriteService) {}
+  constructor(
+    readonly service: FavoriteService,
+  ) {}
 }

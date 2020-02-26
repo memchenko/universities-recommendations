@@ -1,7 +1,4 @@
-export const enum Dictionary {
-  ContactType,
-  FavoriteType,
-  Role,
-  Setting,
-  Gender,
+export const enum ContactType {
+  Phone,
+  Email,
 }

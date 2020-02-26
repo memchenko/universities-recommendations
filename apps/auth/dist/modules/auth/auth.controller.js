@@ -22,9 +22,6 @@ let AuthController = class AuthController {
     login(req) {
         return this.authService.login(req.user);
     }
-    getProfile(req) {
-        return req.user;
-    }
     async signin(body) {
         return await this.authService.signin(body);
     }
@@ -40,14 +37,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Object)
 ], AuthController.prototype, "login", null);
-__decorate([
-    common_1.UseGuards(passport_1.AuthGuard('jwt')),
-    common_1.Get('profile'),
-    __param(0, common_1.Request()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Object)
-], AuthController.prototype, "getProfile", null);
 __decorate([
     common_1.Post('signin'),
     __param(0, common_1.Body()),

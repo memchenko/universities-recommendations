@@ -11,22 +11,17 @@ const typeorm_1 = require("@nestjs/typeorm");
 const favorite_entity_1 = require("./favorite.entity");
 const favorite_service_1 = require("./favorite.service");
 const favorite_controller_1 = require("./favorite.controller");
+const favorite_type_entity_1 = require("./favorite-type/favorite-type.entity");
+const favorite_type_service_1 = require("./favorite-type/favorite-type.service");
+const favorite_type_controller_1 = require("./favorite-type/favorite-type.controller");
 let FavoriteModule = class FavoriteModule {
 };
 FavoriteModule = __decorate([
     common_1.Module({
-        imports: [
-            typeorm_1.TypeOrmModule.forFeature([favorite_entity_1.default]),
-        ],
-        exports: [
-            favorite_service_1.default,
-        ],
-        providers: [
-            favorite_service_1.default,
-        ],
-        controllers: [
-            favorite_controller_1.default,
-        ],
+        imports: [typeorm_1.TypeOrmModule.forFeature([favorite_entity_1.default, favorite_type_entity_1.default])],
+        exports: [favorite_service_1.default, favorite_type_service_1.default],
+        providers: [favorite_service_1.default, favorite_type_service_1.default],
+        controllers: [favorite_controller_1.default, favorite_type_controller_1.default],
     })
 ], FavoriteModule);
 exports.default = FavoriteModule;

@@ -11,22 +11,17 @@ const typeorm_1 = require("@nestjs/typeorm");
 const setting_entity_1 = require("./setting.entity");
 const setting_service_1 = require("./setting.service");
 const setting_controller_1 = require("./setting.controller");
+const setting_type_entity_1 = require("./setting-type/setting-type.entity");
+const setting_type_service_1 = require("./setting-type/setting-type.service");
+const setting_type_controller_1 = require("./setting-type/setting-type.controller");
 let SettingModule = class SettingModule {
 };
 SettingModule = __decorate([
     common_1.Module({
-        imports: [
-            typeorm_1.TypeOrmModule.forFeature([setting_entity_1.default]),
-        ],
-        exports: [
-            setting_service_1.default,
-        ],
-        providers: [
-            setting_service_1.default,
-        ],
-        controllers: [
-            setting_controller_1.default,
-        ],
+        imports: [typeorm_1.TypeOrmModule.forFeature([setting_entity_1.default, setting_type_entity_1.default])],
+        exports: [setting_service_1.default, setting_type_service_1.default],
+        providers: [setting_service_1.default, setting_type_service_1.default],
+        controllers: [setting_controller_1.default, setting_type_controller_1.default],
     })
 ], SettingModule);
 exports.default = SettingModule;

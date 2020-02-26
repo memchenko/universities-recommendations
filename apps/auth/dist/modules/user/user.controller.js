@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const crud_1 = require("@nestjsx/crud");
+const passport_1 = require("@nestjs/passport");
 const user_entity_1 = require("./user.entity");
 const user_service_1 = require("./user.service");
 let UserController = class UserController {
@@ -22,6 +23,13 @@ UserController = __decorate([
     crud_1.Crud({
         model: {
             type: user_entity_1.default,
+        },
+        routes: {
+            getOneBase: {
+                decorators: [
+                    common_1.UseGuards(passport_1.AuthGuard('jwt')),
+                ],
+            },
         },
     }),
     common_1.Controller('user'),

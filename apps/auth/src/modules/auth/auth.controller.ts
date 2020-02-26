@@ -24,14 +24,6 @@ export default class AuthController {
     return this.authService.login(req.user);
   }
 
-  @UseGuards(AuthGuard('jwt'))
-  @Get('profile')
-  public getProfile(
-    @Request() req: FastifyRequestWithUser,
-  ): Omit<IUserEntity, 'password'> {
-    return req.user;
-  }
-
   @Post('signin')
   public async signin(
     @Body() body: Omit<IUserEntity, 'verified'>,

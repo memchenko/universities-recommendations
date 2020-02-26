@@ -1,8 +1,7 @@
-import DictionaryItemEntity from '../dictionary/dictionary-item.entity';
-import { Dictionary } from '../../constants/entities';
+import FavoriteTypeEntity from './favorite-type/favorite-type.entity';
 import { IFavoriteEntity } from './types';
 export default class FavoriteEntity implements IFavoriteEntity {
     id: number;
-    title: string;
-    favoriteType: DictionaryItemEntity<Dictionary.FavoriteType>;
+    value: string;
+    favoriteType: FavoriteTypeEntity;
 }

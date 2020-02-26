@@ -2,13 +2,10 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToOne,
-  JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 
-import DictionaryItemEntity from '../dictionary/dictionary-item.entity';
-import { Dictionary } from '../../constants/entities';
-
+import FavoriteTypeEntity from './favorite-type/favorite-type.entity';
 import { IFavoriteEntity } from './types';
 
 @Entity('favorite')
@@ -20,14 +17,11 @@ export default class FavoriteEntity implements IFavoriteEntity {
     type: 'varchar',
     nullable: false,
   })
-  public title!: string;
+  public value!: string;
 
-  @OneToOne(_ => DictionaryItemEntity, {
-    cascade: ['update'],
+  @ManyToOne(_ => FavoriteTypeEntity, favoriteType => favoriteType.favorites, {
+    cascade: ['remove'],
     nullable: false,
   })
-  @JoinColumn({
-    name: 'favorite_type_id',
-  })
-  public favoriteType!: DictionaryItemEntity<Dictionary.FavoriteType>;
+  public favoriteType!: FavoriteTypeEntity;
 }

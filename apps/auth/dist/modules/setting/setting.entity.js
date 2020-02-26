@@ -10,7 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const dictionary_item_entity_1 = require("../dictionary/dictionary-item.entity");
+const setting_type_entity_1 = require("./setting-type/setting-type.entity");
+const user_entity_1 = require("../user/user.entity");
 let SettingEntity = class SettingEntity {
 };
 __decorate([
@@ -23,17 +24,21 @@ __decorate([
         nullable: false,
     }),
     __metadata("design:type", String)
-], SettingEntity.prototype, "title", void 0);
+], SettingEntity.prototype, "value", void 0);
 __decorate([
-    typeorm_1.OneToOne(_ => dictionary_item_entity_1.default, {
+    typeorm_1.ManyToOne(_ => setting_type_entity_1.default, settingType => settingType.settings, {
         cascade: ['update'],
         nullable: false,
     }),
-    typeorm_1.JoinColumn({
-        name: 'setting_id',
+    __metadata("design:type", setting_type_entity_1.default)
+], SettingEntity.prototype, "settingType", void 0);
+__decorate([
+    typeorm_1.ManyToOne(_ => user_entity_1.default, user => user.settings, {
+        cascade: ['remove'],
+        nullable: false,
     }),
-    __metadata("design:type", dictionary_item_entity_1.default)
-], SettingEntity.prototype, "setting", void 0);
+    __metadata("design:type", user_entity_1.default)
+], SettingEntity.prototype, "user", void 0);
 SettingEntity = __decorate([
     typeorm_1.Entity('setting')
 ], SettingEntity);

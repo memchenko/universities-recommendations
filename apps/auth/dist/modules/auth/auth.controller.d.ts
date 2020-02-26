@@ -8,7 +8,6 @@ export default class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
     login(req: FastifyRequestWithUser): Tokens;
-    getProfile(req: FastifyRequestWithUser): Omit<IUserEntity, 'password'>;
     signin(body: Omit<IUserEntity, 'verified'>): Promise<Tokens>;
     getTokens(req: FastifyRequestWithUser): Tokens;
 }

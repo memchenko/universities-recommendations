@@ -15,18 +15,10 @@ let ContactModule = class ContactModule {
 };
 ContactModule = __decorate([
     common_1.Module({
-        imports: [
-            typeorm_1.TypeOrmModule.forFeature([contact_entity_1.default]),
-        ],
-        exports: [
-            contact_service_1.default,
-        ],
-        providers: [
-            contact_service_1.default,
-        ],
-        controllers: [
-            contact_controller_1.default,
-        ],
+        imports: [typeorm_1.TypeOrmModule.forFeature([contact_entity_1.default])],
+        exports: [contact_service_1.default],
+        providers: [contact_service_1.default],
+        controllers: [contact_controller_1.default],
     })
 ], ContactModule);
 exports.default = ContactModule;

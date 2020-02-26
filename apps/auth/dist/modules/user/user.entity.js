@@ -11,6 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const common_1 = require("@nestjs/common");
+const setting_entity_1 = require("../setting/setting.entity");
+const role_entity_1 = require("../role/role.entity");
+const favorite_entity_1 = require("../favorite/favorite.entity");
+const contact_entity_1 = require("../contact/contact.entity");
 let UserEntity = class UserEntity {
 };
 __decorate([
@@ -32,6 +36,32 @@ __decorate([
     }),
     __metadata("design:type", Boolean)
 ], UserEntity.prototype, "verified", void 0);
+__decorate([
+    typeorm_1.OneToMany(_ => setting_entity_1.default, setting => setting.user),
+    __metadata("design:type", Array)
+], UserEntity.prototype, "settings", void 0);
+__decorate([
+    typeorm_1.ManyToMany(_ => role_entity_1.default, {
+        cascade: ['update'],
+    }),
+    typeorm_1.JoinTable({
+        name: 'user_role',
+    }),
+    __metadata("design:type", Array)
+], UserEntity.prototype, "roles", void 0);
+__decorate([
+    typeorm_1.ManyToMany(_ => favorite_entity_1.default, {
+        cascade: ['update'],
+    }),
+    typeorm_1.JoinTable({
+        name: 'user_favorite',
+    }),
+    __metadata("design:type", Array)
+], UserEntity.prototype, "favorites", void 0);
+__decorate([
+    typeorm_1.OneToMany(_ => contact_entity_1.default, contact => contact.user),
+    __metadata("design:type", Array)
+], UserEntity.prototype, "contacts", void 0);
 UserEntity = __decorate([
     common_1.Injectable(),
     typeorm_1.Entity('user')

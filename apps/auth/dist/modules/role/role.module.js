@@ -15,18 +15,10 @@ let RoleModule = class RoleModule {
 };
 RoleModule = __decorate([
     common_1.Module({
-        imports: [
-            typeorm_1.TypeOrmModule.forFeature([role_entity_1.default]),
-        ],
-        exports: [
-            role_service_1.default,
-        ],
-        providers: [
-            role_service_1.default,
-        ],
-        controllers: [
-            role_controller_1.default,
-        ],
+        imports: [typeorm_1.TypeOrmModule.forFeature([role_entity_1.default])],
+        exports: [role_service_1.default],
+        providers: [role_service_1.default],
+        controllers: [role_controller_1.default],
     })
 ], RoleModule);
 exports.default = RoleModule;

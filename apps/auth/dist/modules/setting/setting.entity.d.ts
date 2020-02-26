@@ -1,8 +1,9 @@
-import DictionaryItemEntity from '../dictionary/dictionary-item.entity';
-import { Dictionary } from '../../constants/entities';
 import { ISettingEntity } from './types';
+import SettingTypeEntity from './setting-type/setting-type.entity';
+import UserEntity from '../user/user.entity';
 export default class SettingEntity implements ISettingEntity {
     id: number;
-    title: string;
-    setting: DictionaryItemEntity<Dictionary.Setting>;
+    value: string;
+    settingType: SettingTypeEntity;
+    user: UserEntity;
 }

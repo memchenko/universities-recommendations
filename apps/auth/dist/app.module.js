@@ -11,7 +11,6 @@ const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
 const path_1 = require("path");
 const database_module_1 = require("./modules/database/database.module");
-const dictionary_module_1 = require("./modules/dictionary/dictionary.module");
 const user_entity_1 = require("./modules/user/user.entity");
 const contact_module_1 = require("./modules/contact/contact.module");
 const favorite_module_1 = require("./modules/favorite/favorite.module");
@@ -24,7 +23,6 @@ AppModule = __decorate([
     common_1.Module({
         imports: [
             database_module_1.default,
-            dictionary_module_1.default,
             user_entity_1.default,
             contact_module_1.default,
             favorite_module_1.default,

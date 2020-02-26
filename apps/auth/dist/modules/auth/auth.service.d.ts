@@ -13,6 +13,6 @@ export default class AuthService {
     private readonly userEnitity;
     constructor(config: ConfigService, jwtService: JwtService, userEnitity: Repository<UserEntity>);
     isPasswordCorrect(inputPassword: string, hash: string): Promise<boolean>;
-    login({ username, verified, }: Omit<IUserEntity, 'password'>): Tokens;
+    login({ username, verified }: Omit<IUserEntity, 'password'>): Tokens;
     signin({ username, password, }: Omit<IUserEntity, 'verified'>): Promise<Tokens>;
 }

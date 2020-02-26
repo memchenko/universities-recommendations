@@ -1,9 +1,8 @@
-import { IDictionaryItemEntity } from '../dictionary/types';
-
-import { Dictionary } from '../../constants/entities';
+import { IUserEntity } from '../user/types';
 
 export interface IContactEntity {
   id: number;
-  title: string;
-  contactType: IDictionaryItemEntity<Dictionary.ContactType>;
+  value: string;
+  contactType: number;
+  user: IUserEntity;
 }

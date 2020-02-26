@@ -28,7 +28,7 @@ let AuthService = class AuthService {
     isPasswordCorrect(inputPassword, hash) {
         return bcrypt_1.compare(inputPassword, hash);
     }
-    login({ username, verified, }) {
+    login({ username, verified }) {
         const refreshTTL = Number(this.config.get('REFRESH_TTL'));
         const accessPayload = { username, verified };
         const refreshPayload = { username };

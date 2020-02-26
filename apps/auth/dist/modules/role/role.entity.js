@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const dictionary_item_entity_1 = require("../dictionary/dictionary-item.entity");
 let RoleEntity = class RoleEntity {
 };
 __decorate([
@@ -24,16 +23,6 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], RoleEntity.prototype, "title", void 0);
-__decorate([
-    typeorm_1.OneToOne(_ => dictionary_item_entity_1.default, {
-        cascade: ['update'],
-        nullable: false,
-    }),
-    typeorm_1.JoinColumn({
-        name: 'role_id',
-    }),
-    __metadata("design:type", dictionary_item_entity_1.default)
-], RoleEntity.prototype, "role", void 0);
 RoleEntity = __decorate([
     typeorm_1.Entity('role')
 ], RoleEntity);

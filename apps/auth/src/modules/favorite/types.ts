@@ -1,8 +1,11 @@
-import { IDictionaryItemEntity } from '../dictionary/types';
-import { Dictionary } from '../../constants/entities';
-
 export interface IFavoriteEntity {
   id: number;
+  value: string;
+  favoriteType: IFavoriteTypeEntity;
+}
+
+export interface IFavoriteTypeEntity {
+  id: number;
   title: string;
-  favoriteType: IDictionaryItemEntity<Dictionary.FavoriteType>;
+  favorites: IFavoriteEntity[];
 }

@@ -15,20 +15,10 @@ let UserModule = class UserModule {
 };
 UserModule = __decorate([
     common_1.Module({
-        imports: [
-            typeorm_1.TypeOrmModule.forFeature([user_entity_1.default]),
-        ],
-        exports: [
-            user_service_1.default,
-            user_entity_1.default,
-        ],
-        providers: [
-            user_service_1.default,
-            user_entity_1.default,
-        ],
-        controllers: [
-            user_controller_1.default,
-        ],
+        imports: [typeorm_1.TypeOrmModule.forFeature([user_entity_1.default])],
+        exports: [user_service_1.default, user_entity_1.default],
+        providers: [user_service_1.default, user_entity_1.default],
+        controllers: [user_controller_1.default],
     })
 ], UserModule);
 exports.default = UserModule;

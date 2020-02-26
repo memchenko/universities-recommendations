@@ -23,8 +23,8 @@ let LocalStrategy = class LocalStrategy extends passport_1.PassportStrategy(pass
     }
     async validate(username, password) {
         const user = await this.usersService.findOne(username);
-        if (!user
-            || !(await this.authService.isPasswordCorrect(password, user.password))) {
+        if (!user ||
+            !(await this.authService.isPasswordCorrect(password, user.password))) {
             throw new common_1.UnauthorizedException();
         }
         return ramda_1.omit('password', user);

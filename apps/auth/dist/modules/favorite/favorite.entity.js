@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const dictionary_item_entity_1 = require("../dictionary/dictionary-item.entity");
+const favorite_type_entity_1 = require("./favorite-type/favorite-type.entity");
 let FavoriteEntity = class FavoriteEntity {
 };
 __decorate([
@@ -23,16 +23,13 @@ __decorate([
         nullable: false,
     }),
     __metadata("design:type", String)
-], FavoriteEntity.prototype, "title", void 0);
+], FavoriteEntity.prototype, "value", void 0);
 __decorate([
-    typeorm_1.OneToOne(_ => dictionary_item_entity_1.default, {
-        cascade: ['update'],
+    typeorm_1.ManyToOne(_ => favorite_type_entity_1.default, favoriteType => favoriteType.favorites, {
+        cascade: ['remove'],
         nullable: false,
     }),
-    typeorm_1.JoinColumn({
-        name: 'favorite_type_id',
-    }),
-    __metadata("design:type", dictionary_item_entity_1.default)
+    __metadata("design:type", favorite_type_entity_1.default)
 ], FavoriteEntity.prototype, "favoriteType", void 0);
 FavoriteEntity = __decorate([
     typeorm_1.Entity('favorite')

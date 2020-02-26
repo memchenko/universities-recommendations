@@ -68,7 +68,7 @@ module.exports = (plop) => {
                             snakeCased: words.join('_'),
                         },
                         files: files.reduce((acc, fileName) => {
-                            acc[fileName] = answers.files.includes('all') || answers.files.includes(fileName);
+                            acc[fileName] = answers.files.includes(fileName);
                             return acc;
                         }, {}),
                     };

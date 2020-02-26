@@ -1,7 +1,12 @@
-import { IDictionaryItemEntity } from '../dictionary/types';
-import { Dictionary } from '../../constants/entities';
+import { IUserEntity } from '../user/types';
 export interface ISettingEntity {
     id: number;
+    value: string;
+    settingType: ISettingTypeEntity;
+    user: IUserEntity;
+}
+export interface ISettingTypeEntity {
+    id: number;
     title: string;
-    setting: IDictionaryItemEntity<Dictionary.Setting>;
+    settings: ISettingEntity[];
 }

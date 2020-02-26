@@ -24,9 +24,7 @@ AuthModule = __decorate([
     common_1.Module({
         imports: [
             user_module_1.default,
-            typeorm_1.TypeOrmModule.forFeature([
-                user_entity_1.default,
-            ]),
+            typeorm_1.TypeOrmModule.forFeature([user_entity_1.default]),
             passport_1.PassportModule.register({
                 session: false,
             }),
@@ -37,18 +35,9 @@ AuthModule = __decorate([
                 },
             }),
         ],
-        exports: [
-            auth_service_1.default,
-        ],
-        providers: [
-            auth_service_1.default,
-            local_strategy_1.default,
-            jwt_strategy_1.default,
-            refresh_strategy_1.default,
-        ],
-        controllers: [
-            auth_controller_1.default,
-        ],
+        exports: [auth_service_1.default],
+        providers: [auth_service_1.default, local_strategy_1.default, jwt_strategy_1.default, refresh_strategy_1.default],
+        controllers: [auth_controller_1.default],
     })
 ], AuthModule);
 exports.default = AuthModule;

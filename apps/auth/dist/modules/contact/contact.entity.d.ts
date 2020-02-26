@@ -1,8 +1,8 @@
-import DictionaryItemEntity from '../dictionary/dictionary-item.entity';
-import { Dictionary } from '../../constants/entities';
 import { IContactEntity } from './types';
+import UserEntity from '../user/user.entity';
 export default class ContactEntity implements IContactEntity {
     id: number;
-    title: string;
-    contactType: DictionaryItemEntity<Dictionary.ContactType>;
+    contactType: number;
+    value: string;
+    user: UserEntity;
 }

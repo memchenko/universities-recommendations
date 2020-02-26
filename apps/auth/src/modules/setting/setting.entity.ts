@@ -2,14 +2,12 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToOne,
-  JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 
-import DictionaryItemEntity from '../dictionary/dictionary-item.entity';
-import { Dictionary } from '../../constants/entities';
-
 import { ISettingEntity } from './types';
+import SettingTypeEntity from './setting-type/setting-type.entity';
+import UserEntity from '../user/user.entity';
 
 @Entity('setting')
 export default class SettingEntity implements ISettingEntity {
@@ -20,14 +18,17 @@ export default class SettingEntity implements ISettingEntity {
     type: 'varchar',
     nullable: false,
   })
-  public title!: string;
+  public value!: string;
 
-  @OneToOne(_ => DictionaryItemEntity, {
+  @ManyToOne(_ => SettingTypeEntity, settingType => settingType.settings, {
     cascade: ['update'],
     nullable: false,
   })
-  @JoinColumn({
-    name: 'setting_id',
+  public settingType!: SettingTypeEntity;
+
+  @ManyToOne(_ => UserEntity, user => user.settings, {
+    cascade: ['remove'],
+    nullable: false,
   })
-  public setting!: DictionaryItemEntity<Dictionary.Setting>;
+  public user!: UserEntity;
 }
