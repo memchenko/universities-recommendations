@@ -15,6 +15,11 @@ import UserService from './user.service';
         UseGuards(AuthGuard('jwt')),
       ],
     },
+    getManyBase: {
+      decorators: [
+        UseGuards(AuthGuard('jwt')),
+      ],
+    },
   },
 })
 @Controller('user')

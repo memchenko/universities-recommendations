@@ -13,7 +13,7 @@ import UserEntity from '../user/user.entity';
 const ALLOWED_VALUES = [
   ContactType.Email,
   ContactType.Phone,
-].join(',');
+].map(value => `'${value}'`).join(',');
 
 @Entity('contact')
 @Check(`contact_type IN (${ALLOWED_VALUES})`)

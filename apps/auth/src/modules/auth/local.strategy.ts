@@ -21,7 +21,11 @@ export default class LocalStrategy extends PassportStrategy(Strategy) {
     username: string,
     password: string,
   ): Promise<Omit<UserEntity, 'password'>> {
-    const user = await this.usersService.findOne(username);
+    const user = await this.usersService.findOne({
+      where: {
+        username,
+      },
+    });
 
     if (
       !user ||

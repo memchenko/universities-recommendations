@@ -5,8 +5,10 @@ import {
   OneToMany,
   ManyToMany,
   JoinTable,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Injectable } from '@nestjs/common';
+import { Exclude } from 'class-transformer';
 
 import { IUserEntity } from './types';
 import SettingEntity from '../setting/setting.entity';
@@ -17,9 +19,13 @@ import ContactEntity from '../contact/contact.entity';
 @Injectable()
 @Entity('user')
 export default class UserEntity implements IUserEntity {
+  @PrimaryGeneratedColumn()
+  public id!: number;
+
   @PrimaryColumn()
   public username!: string;
 
+  @Exclude()
   @Column({
     type: 'varchar',
     nullable: false,
