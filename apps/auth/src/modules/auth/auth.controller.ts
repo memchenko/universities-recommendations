@@ -7,12 +7,10 @@ import {
   Body,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { FastifyRequest } from 'fastify';
 
 import { IUserEntity } from '../user/types';
 import AuthService, { Tokens } from './auth.service';
-
-type FastifyRequestWithUser = FastifyRequest & { user: IUserEntity };
+import { FastifyRequestWithLoginData } from './types';
 
 @Controller()
 export default class AuthController {
@@ -20,7 +18,7 @@ export default class AuthController {
 
   @UseGuards(AuthGuard('local'))
   @Post('login')
-  public login(@Request() req: FastifyRequestWithUser): Tokens {
+  public login(@Request() req: FastifyRequestWithLoginData): Tokens {
     const loginRes = this.authService.login(req.user);
 
     return loginRes;
@@ -35,7 +33,7 @@ export default class AuthController {
 
   @UseGuards(AuthGuard('refresh'))
   @Get('token')
-  public getTokens(@Request() req: FastifyRequestWithUser): Tokens {
+  public getTokens(@Request() req: FastifyRequestWithLoginData): Tokens {
     return this.authService.login(req.user);
   }
 }

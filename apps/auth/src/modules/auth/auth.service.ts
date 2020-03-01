@@ -9,6 +9,7 @@ import { omit } from 'ramda';
 import { IUserEntity } from '../user/types';
 import UserEntity from '../user/user.entity';
 import { IRoleEntity, IPrivilegeEntity } from '../role/types';
+import { LoginData } from './types';
 
 export type Tokens = {
   accessToken: string;
@@ -31,9 +32,7 @@ export default class AuthService {
     return compare(inputPassword, hash);
   }
 
-  public login({ id, username, verified, roles }: Pick<
-    IUserEntity, 'id' | 'username' | 'verified' | 'roles'
-  >): Tokens {
+  public login({ id, username, verified, roles }: LoginData): Tokens {
     const refreshTTL = Number(this.config.get<string>('REFRESH_TTL'));
     const privileges = this.collectPrivileges(roles);
     const rolesTitles = roles.map(role => role.title);

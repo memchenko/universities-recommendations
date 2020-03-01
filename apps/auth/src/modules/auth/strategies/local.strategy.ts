@@ -4,7 +4,6 @@ import { Strategy } from 'passport-local';
 import { omit } from 'ramda';
 
 import AuthService from '../auth.service';
-
 import UserService from '../../user/user.service';
 import { IUserEntity } from '../../user/types'
 
