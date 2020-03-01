@@ -4,9 +4,11 @@ import { compare, hash } from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
+import { omit } from 'ramda';
 
 import { IUserEntity } from '../user/types';
 import UserEntity from '../user/user.entity';
+import { IRoleEntity, IPrivilegeEntity } from '../role/types';
 
 export type Tokens = {
   accessToken: string;
@@ -29,9 +31,16 @@ export default class AuthService {
     return compare(inputPassword, hash);
   }
 
-  public login({ username, verified }: Omit<IUserEntity, 'password'>): Tokens {
+  public login({ id, username, verified, roles }: Pick<
+    IUserEntity, 'id' | 'username' | 'verified' | 'roles'
+  >): Tokens {
     const refreshTTL = Number(this.config.get<string>('REFRESH_TTL'));
-    const accessPayload = { username, verified };
+    const privileges = this.collectPrivileges(roles);
+    const rolesTitles = roles.map(role => role.title);
+    const accessPayload = {
+      id, username, verified, privileges,
+      roles: rolesTitles,
+    };
     const refreshPayload = { username };
 
     return {
@@ -40,6 +49,24 @@ export default class AuthService {
         expiresIn: refreshTTL,
       }),
     };
+  }
+
+  private collectPrivileges(roles: IRoleEntity[]): Omit<IPrivilegeEntity, 'id'>[] {
+    const privilegesSet = roles.reduce((acc, { privileges }) => {
+      privileges.forEach(({
+        id,
+        accessType,
+        object,
+      }) => {
+        if (!acc[id]) {
+          acc[id] = { accessType, object };
+        }
+      });
+
+      return acc;
+    }, {});
+    
+    return Object.values(privilegesSet).map(omit('id'));
   }
 
   public async signin({

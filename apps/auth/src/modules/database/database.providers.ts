@@ -14,6 +14,7 @@ export default [
         password: 'password',
         database: 'auth',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+        logging: ['query'],
       }),
   },
 ];

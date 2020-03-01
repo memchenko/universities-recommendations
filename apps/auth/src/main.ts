@@ -13,6 +13,9 @@ async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(),
+    {
+      logger: ['verbose', 'error', 'debug', 'log'],
+    }
   );
   const options = new DocumentBuilder()
     .setTitle('Auth')

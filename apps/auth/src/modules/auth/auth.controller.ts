@@ -21,7 +21,9 @@ export default class AuthController {
   @UseGuards(AuthGuard('local'))
   @Post('login')
   public login(@Request() req: FastifyRequestWithUser): Tokens {
-    return this.authService.login(req.user);
+    const loginRes = this.authService.login(req.user);
+
+    return loginRes;
   }
 
   @Post('signin')

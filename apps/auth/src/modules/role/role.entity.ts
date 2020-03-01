@@ -2,7 +2,8 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  OneToMany,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 
 import { IRoleEntity } from './types';
@@ -19,6 +20,11 @@ export default class RoleEntity implements IRoleEntity {
   })
   public title!: string;
 
-  @OneToMany(_ => PrivilegeEntity, privilege => privilege.roles)
+  @ManyToMany(_ => PrivilegeEntity, {
+    cascade: ['update'],
+  })
+  @JoinTable({
+    name: 'role_privilege',
+  })
   public privileges!: PrivilegeEntity[];
 }

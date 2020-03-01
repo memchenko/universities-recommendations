@@ -22,7 +22,10 @@ export default class UserEntity implements IUserEntity {
   @PrimaryGeneratedColumn()
   public id!: number;
 
-  @PrimaryColumn()
+  @Column({
+    type: 'varchar',
+    unique: true,
+  })
   public username!: string;
 
   @Exclude()

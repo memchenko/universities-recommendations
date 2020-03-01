@@ -1,9 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, Check, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 import { IPrivilegeEntity } from '../types';
-import RoleEntity from '../role.entity';
+import { PrivilegeType } from '../../../constants/entities';
+
+const ALLOWED_VALUES = [
+    PrivilegeType.Read,
+    PrivilegeType.Write,
+    PrivilegeType.ReadWrite,
+].map(value => `'${value}'`).join(',');
 
 @Entity('privilege')
+@Check(`access_type IN (${ALLOWED_VALUES})`)
 export default class PrivilegeEntity implements IPrivilegeEntity {
     @PrimaryGeneratedColumn()
     public id!: number;
@@ -12,8 +19,11 @@ export default class PrivilegeEntity implements IPrivilegeEntity {
         type: 'varchar',
         length: 100,
     })
-    public title!: string;
+    public object!: string;
 
-    @OneToMany(_ => RoleEntity, role => role.privileges)
-    public roles!: RoleEntity[];
+    @Column({
+        type: 'varchar',
+        nullable: false,
+    })
+    public accessType!: PrivilegeType;
 }

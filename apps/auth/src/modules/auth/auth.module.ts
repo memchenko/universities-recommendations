@@ -6,9 +6,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import AuthService from './auth.service';
 import AuthController from './auth.controller';
 import { jwtConstants } from './constants';
-import LocalStrategy from './local.strategy';
-import JwtStrategy from './jwt.strategy';
-import RefreshStrategy from './refresh.strategy';
+import LocalStrategy from './strategies/local.strategy';
+import JwtStrategy from './strategies/jwt.strategy';
+import RefreshStrategy from './strategies/refresh.strategy';
+import PrivilegeGuard from './guards/privilege.guard';
 
 import UserEntity from '../user/user.entity';
 import UserModule from '../user/user.module';
@@ -23,12 +24,12 @@ import UserModule from '../user/user.module';
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: {
-        expiresIn: '2m',
+        expiresIn: '30m',
       },
     }),
   ],
-  exports: [AuthService],
-  providers: [AuthService, LocalStrategy, JwtStrategy, RefreshStrategy],
+  exports: [AuthService, PrivilegeGuard],
+  providers: [AuthService, LocalStrategy, JwtStrategy, RefreshStrategy, PrivilegeGuard],
   controllers: [AuthController],
 })
 export default class AuthModule {}

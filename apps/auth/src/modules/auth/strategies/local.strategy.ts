@@ -3,10 +3,10 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
 import { omit } from 'ramda';
 
-import AuthService from './auth.service';
+import AuthService from '../auth.service';
 
-import UserService from '../user/user.service';
-import UserEntity from '../user/user.entity';
+import UserService from '../../user/user.service';
+import { IUserEntity } from '../../user/types'
 
 @Injectable()
 export default class LocalStrategy extends PassportStrategy(Strategy) {
@@ -20,10 +20,17 @@ export default class LocalStrategy extends PassportStrategy(Strategy) {
   public async validate(
     username: string,
     password: string,
-  ): Promise<Omit<UserEntity, 'password'>> {
+  ): Promise<
+    Pick<IUserEntity, 'id' | 'username' | 'verified' | 'roles'>
+  > {
     const user = await this.usersService.findOne({
-      where: {
-        username,
+      where: { username },
+      join: {
+        alias: 'user',
+        leftJoinAndSelect: {
+          roles: 'user.roles',
+          rolePrivilege: 'roles.privileges',
+        },
       },
     });
 

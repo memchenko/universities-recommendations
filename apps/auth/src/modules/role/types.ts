@@ -1,8 +1,4 @@
-export const enum PrivilegeType {
-  Read = 'r',
-  Write = 'w',
-  ReadWrite = 'rw',
-}
+import { PrivilegeType } from '../../constants/entities';
 
 export interface IRoleEntity {
   id: number;
@@ -12,13 +8,6 @@ export interface IRoleEntity {
 
 export interface IPrivilegeEntity {
   id: number;
-  title: string;
-  roles: IRoleEntity[];
-}
-
-export interface IRolePrivilegeEntity {
-  id: number;
-  role: IRoleEntity;
-  privilege: IPrivilegeEntity;
-  privilegeType: PrivilegeType;
+  object: string;
+  accessType: PrivilegeType;
 }

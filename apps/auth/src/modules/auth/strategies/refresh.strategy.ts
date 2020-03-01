@@ -4,9 +4,9 @@ import { ExtractJwt } from 'passport-jwt';
 import { Strategy } from 'passport-jwt';
 import { omit } from 'ramda';
 
-import { jwtConstants } from './constants';
-import { IUserEntity } from '../user/types';
-import UserService from '../user/user.service';
+import { jwtConstants } from '../constants';
+import { IUserEntity } from '../../user/types';
+import UserService from '../../user/user.service';
 
 @Injectable()
 export default class RefreshStrategy extends PassportStrategy(
