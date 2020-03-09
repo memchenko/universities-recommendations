@@ -1,20 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { compare, hash } from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
-import { omit } from 'ramda';
+import { compare, hash } from 'bcrypt';
+import { Repository } from 'typeorm';
 
 import { IUserEntity } from '../user/types';
 import UserEntity from '../user/user.entity';
-import { IRoleEntity, IPrivilegeEntity } from '../role/types';
-import { LoginData } from './types';
-
-export type Tokens = {
-  accessToken: string;
-  refreshToken: string;
-};
+import { LoginData, Tokens } from './types';
 
 @Injectable()
 export default class AuthService {
@@ -32,14 +25,9 @@ export default class AuthService {
     return compare(inputPassword, hash);
   }
 
-  public login({ id, username, verified, roles }: LoginData): Tokens {
+  public login({ id, username, verified }: LoginData): Tokens {
     const refreshTTL = Number(this.config.get<string>('REFRESH_TTL'));
-    const privileges = this.collectPrivileges(roles);
-    const rolesTitles = roles.map(role => role.title);
-    const accessPayload = {
-      id, username, verified, privileges,
-      roles: rolesTitles,
-    };
+    const accessPayload = { id, username, verified };
     const refreshPayload = { username };
 
     return {
@@ -48,24 +36,6 @@ export default class AuthService {
         expiresIn: refreshTTL,
       }),
     };
-  }
-
-  private collectPrivileges(roles: IRoleEntity[]): Omit<IPrivilegeEntity, 'id'>[] {
-    const privilegesSet = roles.reduce((acc, { privileges }) => {
-      privileges.forEach(({
-        id,
-        accessType,
-        object,
-      }) => {
-        if (!acc[id]) {
-          acc[id] = { accessType, object };
-        }
-      });
-
-      return acc;
-    }, {});
-    
-    return Object.values(privilegesSet).map(omit('id'));
   }
 
   public async signin({

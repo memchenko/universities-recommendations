@@ -36,5 +36,5 @@ export default class ContactEntity implements IContactEntity {
     cascade: ['remove'],
     nullable: false,
   })
-  public user!: UserEntity;
+  public user?: UserEntity;
 }

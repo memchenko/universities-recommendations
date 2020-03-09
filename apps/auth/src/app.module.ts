@@ -6,8 +6,6 @@ import { join } from 'path';
 import DatabaseModule from './modules/database/database.module';
 import UserEntity from './modules/user/user.entity';
 import ContactModule from './modules/contact/contact.module';
-import FavoriteModule from './modules/favorite/favorite.module';
-import RoleModule from './modules/role/role.module';
 import SettingEntity from './modules/setting/setting.entity';
 import AuthModule from './modules/auth/auth.module';
 
@@ -16,8 +14,6 @@ import AuthModule from './modules/auth/auth.module';
     DatabaseModule,
     UserEntity,
     ContactModule,
-    FavoriteModule,
-    RoleModule,
     SettingEntity,
     AuthModule,
     TypeOrmModule.forRoot(),

@@ -4,5 +4,5 @@ export interface IContactEntity {
   id: number;
   value: string;
   contactType: number;
-  user: IUserEntity;
+  user?: IUserEntity;
 }

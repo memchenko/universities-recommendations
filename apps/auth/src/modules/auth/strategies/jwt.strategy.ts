@@ -4,9 +4,7 @@ import { ExtractJwt } from 'passport-jwt';
 import { Strategy } from 'passport-jwt';
 
 import { jwtConstants } from '../constants';
-
 import { IUserEntity } from '../../user/types';
-import { IPrivilegeEntity } from '../../role/types';
 
 @Injectable()
 export default class JwtStrategy extends PassportStrategy(Strategy) {
@@ -21,7 +19,7 @@ export default class JwtStrategy extends PassportStrategy(Strategy) {
   public validate(
     payload: Pick<
       IUserEntity, 'id' | 'username' | 'verified'
-    > & { roles: string[], privileges: Omit<IPrivilegeEntity, 'id'>[] },
+    >,
   ) {
     return payload;
   }

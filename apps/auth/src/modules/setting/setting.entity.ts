@@ -2,11 +2,11 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  ManyToOne,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 
 import { ISettingEntity } from './types';
-import SettingTypeEntity from './setting-type/setting-type.entity';
 import UserEntity from '../user/user.entity';
 
 @Entity('setting')
@@ -15,20 +15,25 @@ export default class SettingEntity implements ISettingEntity {
   public id!: number;
 
   @Column({
-    type: 'varchar',
+    type: 'bool',
     nullable: false,
+    default: false,
   })
-  public value!: string;
+  public isPhoneVisible!: boolean;
 
-  @ManyToOne(_ => SettingTypeEntity, settingType => settingType.settings, {
-    cascade: ['update'],
+  @Column({
+    type: 'bool',
     nullable: false,
+    default: false,
   })
-  public settingType!: SettingTypeEntity;
+  public isEmailVisible!: boolean;
 
-  @ManyToOne(_ => UserEntity, user => user.settings, {
+  @OneToOne(_ => UserEntity, {
     cascade: ['remove'],
     nullable: false,
+  })
+  @JoinColumn({
+    name: 'user_id',
   })
   public user!: UserEntity;
 }

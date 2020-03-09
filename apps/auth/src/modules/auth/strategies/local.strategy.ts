@@ -20,17 +20,10 @@ export default class LocalStrategy extends PassportStrategy(Strategy) {
     username: string,
     password: string,
   ): Promise<
-    Pick<IUserEntity, 'id' | 'username' | 'verified' | 'roles'>
+    Pick<IUserEntity, 'id' | 'username' | 'verified'>
   > {
     const user = await this.usersService.findOne({
       where: { username },
-      join: {
-        alias: 'user',
-        leftJoinAndSelect: {
-          roles: 'user.roles',
-          rolePrivilege: 'roles.privileges',
-        },
-      },
     });
 
     if (

@@ -9,7 +9,6 @@ import { jwtConstants } from './constants';
 import LocalStrategy from './strategies/local.strategy';
 import JwtStrategy from './strategies/jwt.strategy';
 import RefreshStrategy from './strategies/refresh.strategy';
-import PrivilegeGuard from './guards/privilege.guard';
 
 import UserEntity from '../user/user.entity';
 import UserModule from '../user/user.module';
@@ -28,8 +27,8 @@ import UserModule from '../user/user.module';
       },
     }),
   ],
-  exports: [AuthService, PrivilegeGuard],
-  providers: [AuthService, LocalStrategy, JwtStrategy, RefreshStrategy, PrivilegeGuard],
+  exports: [AuthService],
+  providers: [AuthService, LocalStrategy, JwtStrategy, RefreshStrategy],
   controllers: [AuthController],
 })
 export default class AuthModule {}

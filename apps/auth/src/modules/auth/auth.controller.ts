@@ -9,8 +9,8 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 
 import { IUserEntity } from '../user/types';
-import AuthService, { Tokens } from './auth.service';
-import { FastifyRequestWithLoginData } from './types';
+import AuthService from './auth.service';
+import { FastifyRequestWithLoginData, Tokens } from './types';
 
 @Controller()
 export default class AuthController {
@@ -19,9 +19,7 @@ export default class AuthController {
   @UseGuards(AuthGuard('local'))
   @Post('login')
   public login(@Request() req: FastifyRequestWithLoginData): Tokens {
-    const loginRes = this.authService.login(req.user);
-
-    return loginRes;
+    return this.authService.login(req.user);
   }
 
   @Post('signin')
