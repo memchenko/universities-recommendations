@@ -5,7 +5,6 @@ import { IUserEntity } from './types';
 import {
   USER,
   USERS,
-  USER_CONTACT,
   USER_CONTACTS,
 } from '../../constants/routes';
 import { FastifyRequestWithJWTUser } from '../auth/types';
@@ -35,9 +34,6 @@ export default class UserController {
 
     return this.usersService.getUsers(limit, offset);
   }
-
-  @Get(USER_CONTACT)
-  public getUserContact() {}
 
   @Get(USER_CONTACTS)
   public getUserContacts() {}
