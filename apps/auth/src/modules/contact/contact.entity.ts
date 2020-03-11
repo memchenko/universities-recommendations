@@ -5,6 +5,7 @@ import {
   ManyToOne,
   Check,
 } from 'typeorm';
+import { Injectable } from '@nestjs/common';
 
 import { IContactEntity } from './types';
 import { ContactType } from '../../constants/entities';
@@ -15,6 +16,7 @@ const ALLOWED_VALUES = [
   ContactType.Phone,
 ].map(value => `'${value}'`).join(',');
 
+@Injectable()
 @Entity('contact')
 @Check(`contact_type IN (${ALLOWED_VALUES})`)
 export default class ContactEntity implements IContactEntity {

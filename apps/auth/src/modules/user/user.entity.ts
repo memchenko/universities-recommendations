@@ -3,14 +3,12 @@ import {
   Column,
   OneToMany,
   PrimaryGeneratedColumn,
-  OneToOne,
 } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { Exclude } from 'class-transformer';
 
 import { IUserEntity } from './types';
 import ContactEntity from '../contact/contact.entity';
-import SettingEntity from '../setting/setting.entity';
 
 @Injectable()
 @Entity('user')
