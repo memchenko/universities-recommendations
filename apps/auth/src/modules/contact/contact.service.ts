@@ -1,16 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 
-import ContactEntity from './contact.entity';
+import { ContactType } from '../../constants/entities';
+import { ContactTypesResponse } from './types';
 
 @Injectable()
-export default class ContactService extends TypeOrmCrudService<ContactEntity> {
-  constructor(
-    @InjectRepository(ContactEntity)
-    readonly repository: Repository<ContactEntity>,
-  ) {
-    super(repository);
+export default class ContactService {
+  
+  public getContactTypes(): ContactTypesResponse {
+    const keys = Object.keys(ContactType).filter((key) => isNaN(+key));
+
+    return keys.reduce((acc, key) => {
+      acc[key] = Number(ContactType[key]);
+
+      return acc;
+    }, {});
   }
+
 }

@@ -1,4 +1,4 @@
-export const enum ContactType {
+export enum ContactType {
   Phone,
   Email,
 }

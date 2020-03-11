@@ -1,15 +1,16 @@
-import { Controller } from '@nestjs/common';
-import { Crud } from '@nestjsx/crud';
+import { Controller, Get } from '@nestjs/common';
 
-import ContactEntity from './contact.entity';
 import ContactService from './contact.service';
+import { ContactTypesResponse } from './types';
 
-@Crud({
-  model: {
-    type: ContactEntity,
-  },
-})
-@Controller('contact')
+import { CONTACT_TYPES } from '../../constants/routes';
+
+@Controller()
 export default class ContactController {
-  constructor(readonly service: ContactService) {}
+  constructor(readonly contacts: ContactService) {}
+
+  @Get(CONTACT_TYPES)
+  public getContactTypes(): ContactTypesResponse {
+    return this.contacts.getContactTypes();
+  }
 }

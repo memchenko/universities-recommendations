@@ -6,3 +6,7 @@ export interface IContactEntity {
   contactType: number;
   user?: IUserEntity;
 }
+
+export interface ContactTypesResponse {
+  [key: string]: number;
+}
