@@ -1,1 +1,0 @@
-{"version":3,"file":"role.entity.js","sourceRoot":"","sources":["../../../src/modules/role/role.entity.ts"],"names":[],"mappings":";;;;;;;;;;;AAAA,qCAIiB;AAKjB,IAAqB,UAAU,GAA/B,MAAqB,UAAU;CAS9B,CAAA;AAPC;IADC,gCAAsB,EAAE;;sCACN;AAMnB;IAJC,gBAAM,CAAC;QACN,IAAI,EAAE,SAAS;QACf,QAAQ,EAAE,KAAK;KAChB,CAAC;;yCACoB;AARH,UAAU;IAD9B,gBAAM,CAAC,MAAM,CAAC;GACM,UAAU,CAS9B;kBAToB,UAAU"}
