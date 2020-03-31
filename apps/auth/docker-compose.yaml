@@ -13,3 +13,13 @@ services:
     volumes:
       - "./scripts/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh"
       - "/docker/tmp/postgres/data:/var/lib/postgres/data"
+  redis:
+    image: redis:6.0-rc-alpine
+    ports:
+      - "6380:6380"
+    expose:
+      - "6380"
+    volumes:
+      - "/docker/tmp/redis/data:/var/lib/redis/data"
+      - "./redis.dev.conf:/usr/local/etc/redis/redis.conf"
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]

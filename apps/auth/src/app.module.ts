@@ -18,7 +18,11 @@ import AuthModule from './modules/auth/auth.module';
     AuthModule,
     TypeOrmModule.forRoot(),
     ConfigModule.forRoot({
-      envFilePath: join(__dirname, '..', '.dev.env'),
+      envFilePath: join(
+        __dirname,
+        '..',
+        process.env.MODE === 'production' ? '.env' : '.dev.env'
+      ),
       isGlobal: true,
     }),
   ],

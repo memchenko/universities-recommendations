@@ -40,6 +40,7 @@
     "fastify": "^2.12.0",
     "fastify-swagger": "^2.5.0",
     "moment": "^2.24.0",
+    "nestjs-redis": "^1.2.7",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",

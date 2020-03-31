@@ -155,6 +155,7 @@ export default class UserService extends TypeOrmCrudService<UserEntity> {
             id: result['contact_id'],
             contactType: result['contact_contact_type'],
             value: result['contact_value'],
+            userId: result['user_id'],
           }))
       }
     );

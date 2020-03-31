@@ -5,10 +5,12 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
+import { Injectable } from '@nestjs/common';
 
 import { ISettingEntity } from './types';
 import UserEntity from '../user/user.entity';
 
+@Injectable()
 @Entity('setting')
 export default class SettingEntity implements ISettingEntity {
   @PrimaryGeneratedColumn()
@@ -17,23 +19,30 @@ export default class SettingEntity implements ISettingEntity {
   @Column({
     type: 'bool',
     nullable: false,
-    default: false,
+    default: true,
   })
   public isPhoneVisible!: boolean;
 
   @Column({
     type: 'bool',
     nullable: false,
-    default: false,
+    default: true,
   })
   public isEmailVisible!: boolean;
 
   @OneToOne(_ => UserEntity, {
-    cascade: ['remove'],
+    cascade: ['insert', 'update'],
     nullable: false,
   })
   @JoinColumn({
-    name: 'user_id',
+    name: 'user_id'
   })
   public user!: UserEntity;
+
+  @Column({
+    type: 'int',
+    nullable: false,
+    unique: true,
+  })
+  public userId!: number;
 }

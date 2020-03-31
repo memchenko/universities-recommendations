@@ -35,8 +35,14 @@ export default class ContactEntity implements IContactEntity {
   public value!: string;
 
   @ManyToOne(_ => UserEntity, user => user.contacts, {
-    cascade: ['remove'],
+    cascade: ['insert', 'remove'],
     nullable: false,
   })
   public user?: UserEntity;
+
+  @Column({
+    type: 'int',
+    nullable: false,
+  })
+  public userId!: number;
 }

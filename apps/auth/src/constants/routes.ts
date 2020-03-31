@@ -12,6 +12,8 @@ export const SIGNOUT = 'signout';
 
 export const OWN_CONTACTS = 'contact';
 
+export const OWN_CONTACT = 'contact/:id';
+
 export const OWN_SETTINGS = 'setting';
 
 export const USERS = 'user';

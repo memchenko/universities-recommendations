@@ -1,14 +1,14 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { PassportStrategy } from '@nestjs/passport';
+import { PassportStrategy, AuthGuard } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
 import { omit } from 'ramda';
 
 import AuthService from '../auth.service';
+import { LoginData } from '../types';
 import UserService from '../../user/user.service';
-import { IUserEntity } from '../../user/types'
 
 @Injectable()
-export default class LocalStrategy extends PassportStrategy(Strategy) {
+export default class LocalStrategy extends PassportStrategy(Strategy, 'local') {
   constructor(
     private readonly usersService: UserService,
     private readonly authService: AuthService,
@@ -19,9 +19,7 @@ export default class LocalStrategy extends PassportStrategy(Strategy) {
   public async validate(
     username: string,
     password: string,
-  ): Promise<
-    Pick<IUserEntity, 'id' | 'username' | 'verified'>
-  > {
+  ): Promise<LoginData> {
     const user = await this.usersService.findOne({
       where: { username },
     });

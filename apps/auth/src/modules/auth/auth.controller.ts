@@ -5,24 +5,36 @@ import {
   UseGuards,
   Get,
   Body,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
-import { IUserEntity } from '../user/types';
 import AuthService from './auth.service';
-import { FastifyRequestWithLoginData, Tokens } from './types';
+import {
+  Tokens,
+  FastifyRequestWithJWTUser,
+  FastifyRequestWithLoginData,
+} from './types';
+
+import { IUserEntity } from '../user/types';
+import { LOGIN, SIGNIN, TOKEN, LOGOUT } from '../../constants/routes';
 
 @Controller()
 export default class AuthController {
-  constructor(private readonly authService: AuthService) {}
+
+  constructor(
+    private readonly authService: AuthService,
+  ) {}
 
   @UseGuards(AuthGuard('local'))
-  @Post('login')
-  public login(@Request() req: FastifyRequestWithLoginData): Tokens {
+  @Post(LOGIN)
+  public async login(
+    @Request() req: FastifyRequestWithLoginData,
+  ): Promise<Tokens> {
     return this.authService.login(req.user);
   }
 
-  @Post('signin')
+  @Post(SIGNIN)
   public async signin(
     @Body() body: Omit<IUserEntity, 'verified'>,
   ): Promise<Tokens> {
@@ -30,8 +42,25 @@ export default class AuthController {
   }
 
   @UseGuards(AuthGuard('refresh'))
-  @Get('token')
-  public getTokens(@Request() req: FastifyRequestWithLoginData): Tokens {
+  @Get(TOKEN)
+  public async getTokens(
+    @Request() req: FastifyRequestWithJWTUser,
+  ): Promise<Tokens> {
+    const isBlacklisted = await this.authService.isUserBlacklisted(req.user);
+
+    if (isBlacklisted) {
+      throw new UnauthorizedException();
+    }
+
     return this.authService.login(req.user);
   }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get(LOGOUT)
+  public logout(
+    @Request() req: FastifyRequestWithJWTUser,
+  ): Promise<void> {
+    return this.authService.logout(req.user);
+  }
+
 }

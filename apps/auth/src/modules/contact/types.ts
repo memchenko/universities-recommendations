@@ -5,8 +5,13 @@ export interface IContactEntity {
   value: string;
   contactType: number;
   user?: IUserEntity;
+  userId: number;
 }
 
-export interface ContactTypesResponse {
+export interface IContactTypesResponse {
   [key: string]: number;
 }
+
+export interface IContactResponse extends Pick<
+  IContactEntity, 'id' | 'value' | 'contactType'
+> {} 
