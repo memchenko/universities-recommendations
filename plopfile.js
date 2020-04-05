@@ -31,12 +31,7 @@ module.exports = (plop) => {
                     type: 'list',
                     name: 'project',
                     message: 'Choose project',
-                    choices: [
-                        'universities',
-                        'auth',
-                        'admin',
-                        'public',
-                    ],
+                    choices: projects,
                 },
                 {
                     type: 'input',
