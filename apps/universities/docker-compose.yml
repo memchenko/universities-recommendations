@@ -1,14 +1,33 @@
 version: "3"
 
 services:
+  app:
+    image: node:13.12-alpine
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    command: npm run start:debug
+    volumes:
+      - .:/usr/src/app
+      - nodemodules:/usr/app/node_modules
+    working_dir: /usr/src/app/
+    depends_on:
+      - db
+    network_mode: host
   db:
     image: postgres:12.1-alpine
     restart: always
     environment:
       POSTGRES_PASSWORD: password
     ports:
-      - "5432:5432"
+      - 5432:5432
     expose:
-      - "5432"
+      - 5432
     volumes:
-      - "./scripts/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh"
+      - ./scripts/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
+      - /docker/tmp/postgres/data:/var/lib/postgres/data
+
+volumes:
+  nodemodules:
+    external: true

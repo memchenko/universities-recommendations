@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  base:
+    image: node:13.12-alpine
+    volumes:
+      - .:/usr/src/app
+      - nodemodules:/usr/src/app/node_modules
+    working_dir: /usr/src/app
+  install:
+    extends:
+      service: base
+    command: npm i
+
+volumes:
+  nodemodules:
+    external: true
