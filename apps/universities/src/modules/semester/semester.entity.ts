@@ -4,13 +4,10 @@ import {
     Column,
     OneToOne,
     JoinColumn,
-    ManyToMany,
-    JoinTable,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 
 import SpecialtyEntity from '../specialty/specialty.entity';
-import CourseEntity from '../course/course.entity';
 
 import { ISemesterEntity } from './types';
 
@@ -50,14 +47,4 @@ export default class SemesterEntity implements ISemesterEntity {
         name: 'specialty_id',
     })
     public specialty!: SpecialtyEntity;
-
-    @ApiProperty()
-    @ManyToMany(_ => CourseEntity, {
-        cascade: ['update'],
-        nullable: false,
-    })
-    @JoinTable({
-        name: 'semester_course',
-    })
-    public courses!: CourseEntity[];
 }
