@@ -1,0 +1,8 @@
+import { Entity } from 'typeorm';
+
+import { I{{moduleName.capitalized}}Entity } from './types';
+
+@Entity('{{moduleName.snakeCased}}')
+export default class {{moduleName.capitalized}}Entity implements I{{moduleName.capitalized}}Entity {
+
+}

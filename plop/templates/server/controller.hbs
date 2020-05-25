@@ -1,0 +1,21 @@
+import { Controller } from '@nestjs/common';
+{{#if isCrud}}
+import { Crud } from '@nestjsx/crud';
+
+import {{moduleName.capitalized}}Entity from './{{moduleName.kebabCased}}.entity';
+import {{moduleName.capitalized}}Service from './{{moduleName.kebabCased}}.service';
+
+@Crud({
+    model: {
+        type: {{moduleName.capitalized}}Entity,
+    },
+})
+{{/if}}
+@Controller('{{moduleName.kebabCased}}')
+export default class {{moduleName.capitalized}}Controller {
+    {{#if isCrud}}
+    constructor(
+        readonly service: {{moduleName.capitalized}}Service,
+    ) {}
+    {{/if}}
+}

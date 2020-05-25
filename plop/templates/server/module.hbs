@@ -1,0 +1,34 @@
+import { Module } from '@nestjs/common';
+{{#if isCrud}}
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+import {{moduleName.capitalized}}Entity from './{{moduleName.kebabCased}}.entity';
+{{/if}}
+{{#if files.service}}
+import {{moduleName.capitalized}}Service from './{{moduleName.kebabCased}}.service';
+{{/if}}
+{{#if files.controller}}
+import {{moduleName.capitalized}}Controller from './{{moduleName.kebabCased}}.controller';
+{{/if}}
+
+@Module({
+    {{#if isCrud}}
+    imports: [
+        TypeOrmModule.forFeature([{{moduleName.capitalized}}Entity]),
+    ],
+    {{/if}}
+    {{#if files.service}}
+    exports: [
+        {{moduleName.capitalized}}Service,
+    ],
+    providers: [
+        {{moduleName.capitalized}}Service,
+    ],
+    {{/if}}
+    {{#if files.controller}}
+    controllers: [
+        {{moduleName.capitalized}}Controller,
+    ],
+    {{/if}}
+})
+export default class {{moduleName.capitalized}}Module {}

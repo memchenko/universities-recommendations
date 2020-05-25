@@ -1,0 +1,20 @@
+import { Injectable } from '@nestjs/common';
+{{#if isCrud}}
+import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+
+import {{moduleName.capitalized}}Entity from './{{moduleName.kebabCased}}.entity';
+{{/if}}
+
+@Injectable()
+export default class {{moduleName.capitalized}}Service {{#if isCrud}}extends TypeOrmCrudService<{{moduleName.capitalized}}Entity>{{/if}}{
+    {{#if isCrud}}
+    constructor(
+        @InjectRepository({{moduleName.capitalized}}Entity)
+        readonly repository: Repository<{{moduleName.capitalized}}Entity>,
+    ) {
+        super(repository);
+    }
+    {{/if}}
+}
