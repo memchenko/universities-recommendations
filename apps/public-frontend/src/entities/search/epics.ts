@@ -7,6 +7,7 @@ import {
     setSearchResults,
     fetchRecommendations,
     setRecommendations,
+    fetchLocations,
 } from './actions';
 import {
     searchLens,
@@ -14,6 +15,7 @@ import {
 } from './constants';
 import {
     get,
+    post,
     makeResponseObservable,
 } from '../network';
 import { Paths } from '../../constants/urls';
@@ -56,7 +58,24 @@ const fetchRecommendationsEpic = (
     }),
 );
 
+const fetchLocationsEpic = (
+    // TODO: type
+    action$: ActionsObservable<any>
+) => action$.pipe(
+    ofType(fetchLocations),
+    map(({ payload }) => post({
+        key: payload.key,
+        url: Paths.Locations,
+        data: { query: payload.query, count: 10 },
+        headers: {
+            Accept: 'application/json',
+            'Authorization': 'Token 3d212224f45a40cca74d1fccc4601dbf03dc6fdf',
+        },
+    })),
+);
+
 export default [
     fetchSearchEpic,
     fetchRecommendationsEpic,
+    fetchLocationsEpic,
 ];

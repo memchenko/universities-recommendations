@@ -1,10 +1,16 @@
-export const ROOT = '/';
-export const SEARCH = '/search';
-export const UNIVERSITY = '/university';
-export const FACULTY = '/faculty';
-export const DEPARTMENT = '/department';
-export const SPECIALTY = '/specialty';
-export const ACCOUNT = '/account';
+export enum Routes {
+    Root = '/',
+    Search = '/search',
+    Recommendations = '/recommendations',
+    University = '/university',
+    Faculty = '/faculty',
+    Department = '/department',
+    Specialty = '/specialty',
+    Account = '/account',
+    Auth = '/auth',
+    Registration = '/registration',
+    Favorite = '/favorite',
+}
 
 export const BASE_URL = 'http://localhost:3000';
 export const API = '/api/0.0.1';
@@ -17,6 +23,7 @@ export enum Paths {
     Avatar = '/avatar',
     Password = '/password',
     Search = '/search',
+    Locations = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address',
     Recommendations = '/recommendations',
     Favorites = '/favorites',
     UniversityDetails = '/university/:id/details',

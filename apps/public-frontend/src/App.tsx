@@ -1,54 +1,45 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import {
-  ROOT,
-  SEARCH,
-  UNIVERSITY,
-  FACULTY,
-  DEPARTMENT,
-  SPECIALTY,
-  ACCOUNT,
-} from './constants/urls';
-import { store } from './store/store';
-import { Root } from './screens/Root';
-import { Search } from './screens/Search';
-import { University } from './screens/University';
-import { Faculty } from './screens/Faculty';
-import { Department } from './screens/Department';
-import { Specialty } from './screens/Specialty';
-import { Account } from './screens/Account';
+import { Routes } from './constants/urls';
+import Layout from './components/Layout';
+import Root from './screens/Root';
+import Search from './screens/Search';
+import University from './screens/University';
+import Faculty from './screens/Faculty';
+import Department from './screens/Department';
+import Specialty from './screens/Specialty';
+import Recommendations from './screens/Recommendations';
 
 function App() {
   return (
-    <Provider store={ store }>
-      <Router>
+    <Router>
+      <Layout>
         <Switch>
-          <Route path={ SEARCH }>
+          <Route path={ Routes.Search }>
             <Search />
           </Route>
-          <Route path={ UNIVERSITY }>
+          <Route path={ Routes.Recommendations }>
+            <Recommendations />
+          </Route>
+          <Route path={ Routes.University }>
             <University />
           </Route>
-          <Route path={ FACULTY }>
+          <Route path={ Routes.Faculty }>
             <Faculty />
           </Route>
-          <Route path={ DEPARTMENT }>
+          <Route path={ Routes.Department }>
             <Department />
           </Route>
-          <Route path={ SPECIALTY }>
+          <Route path={ Routes.Specialty }>
             <Specialty />
           </Route>
-          <Route path={ ACCOUNT }>
-            <Account />
-          </Route>
-          <Route path={ ROOT }>
+          <Route path={ Routes.Root }>
             <Root />
           </Route>
         </Switch>
-      </Router>
-    </Provider>
+      </Layout>
+    </Router>
   );
 }
 

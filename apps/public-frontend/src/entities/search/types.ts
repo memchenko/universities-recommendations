@@ -1,3 +1,5 @@
+import { lens } from 'ramda';
+
 import { IQueryStringData } from '../network';
 
 export enum Actions {
@@ -5,6 +7,7 @@ export enum Actions {
     FetchRecommendations = '@search/FETCH_RECOMMENDATIONS',
     SetResults = '@search/RESULTS',
     SetRecommendations = '@search/RECOMMENDATIONS',
+    FetchLocations = '@search/FETCH_LOCATIONS',
 }
 
 export interface IFetchSearchActionPayload extends IQueryStringData {
@@ -43,6 +46,17 @@ export interface ISearchResult {
     limit: number;
     offset: number;
     value: ISearchResultBit[];
+}
+
+export interface ILocationsResponse {
+    suggestions: {
+        value: string;
+    }[];
+}
+
+export interface ILocationActionArgData {
+    query: string;
+    key: ReturnType<typeof lens>;
 }
 
 export interface ISearchState extends ISearchResult {}

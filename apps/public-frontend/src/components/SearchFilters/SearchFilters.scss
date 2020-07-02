@@ -1,0 +1,28 @@
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+
+.search-filters {
+    &__additional {
+        border-top: $card-border-width solid $card-border-color;
+        border-right: none;
+        border-left: none;
+        cursor: pointer;
+
+        &:focus {
+            outline: none;
+            box-shadow: $btn-focus-box-shadow;
+        }
+
+        &--closed {
+            border-bottom: none !important;
+        }
+    }
+
+    &__additional-menu {
+        display: none;
+
+        &--open {
+            display: block;
+        }
+    }
+}

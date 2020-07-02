@@ -5,6 +5,7 @@ import {
     IFetchSearchActionPayload,
     IFetchRecommendationsPayload,
     ISearchResult,
+    ILocationActionArgData,
 } from './types';
 
 export const fetchSearch = createActionCreator(
@@ -27,4 +28,9 @@ export const setSearchResults = createActionCreator(
 export const setRecommendations = createActionCreator(
     Actions.SetRecommendations,
     resolve => (data: ISearchResult) => resolve(data)
+);
+
+export const fetchLocations = createActionCreator(
+    Actions.FetchLocations,
+    resolve => (data: ILocationActionArgData) => resolve(data)
 );

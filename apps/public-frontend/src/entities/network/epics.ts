@@ -30,7 +30,7 @@ const getEpic = (
     mergeMap(({ payload: { key, data, path, pathParams } }: ReturnType<typeof get>) => merge(
         of(setRequest({ key, status: RequestStatus.Pending })),
         from(
-            fetch(buildUrl(path, pathParams, data), {
+            fetch(buildUrl(path || Paths.Locations, pathParams, data), {
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${getAccessToken(state$.value)}`,
@@ -48,7 +48,6 @@ const getEpic = (
 
 const postEpic = (
     action$: ActionsObservable<ReturnType<typeof post>>,
-    state$: StateObservable<IStateWithNetwork>,
 ) => action$.pipe(
     ofType(Actions.Post),
     mergeMap(({ payload: { key, data, path, pathParams } }: ReturnType<typeof post>) => merge(
@@ -57,7 +56,6 @@ const postEpic = (
             fetch(buildUrl(path, pathParams), {
                 method: 'POST',
                 headers: {
-                    Authorization: `Bearer ${getAccessToken(state$.value)}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
@@ -80,7 +78,7 @@ const patchEpic = (
     mergeMap(({ payload: { key, data, path, pathParams } }: ReturnType<typeof patch>) => merge(
         of(setRequest({ key, status: RequestStatus.Pending })),
         from(
-            fetch(buildUrl(path, pathParams, data), {
+            fetch(buildUrl(path || Paths.Locations, pathParams, data), {
                 method: 'PATCH',
                 headers: {
                     Authorization: `Bearer ${getAccessToken(state$.value)}`,
@@ -104,7 +102,7 @@ const putEpic = (
     mergeMap(({ payload: { key, data, path, pathParams } }: ReturnType<typeof put>) => merge(
         of(setRequest({ key, status: RequestStatus.Pending })),
         from(
-            fetch(buildUrl(path, pathParams), {
+            fetch(buildUrl(path || Paths.Locations, pathParams), {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${getAccessToken(state$.value)}`,
@@ -130,8 +128,8 @@ const deleteEpic = (
     mergeMap(({ payload: { key, path, pathParams } }: ReturnType<typeof del>) => merge(
         of(setRequest({ key, status: RequestStatus.Pending })),
         from(
-            fetch(buildUrl(path, pathParams), {
-                method: 'POST',
+            fetch(buildUrl(path || Paths.Locations, pathParams), {
+                method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${getAccessToken(state$.value)}`,
                 },

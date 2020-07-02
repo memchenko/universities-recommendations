@@ -1,0 +1,88 @@
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+
+$item-height: add($font-size-lg * $line-height-base, $dropdown-item-padding-y * 2);
+
+.fetch-input {
+    position: relative;
+
+    &__menu {
+        display: none;
+        
+        width: 100%;
+        max-height: $item-height * 5;
+        overflow: hidden auto;
+        
+        position: absolute;
+        left: 0;
+        top: 100%;
+
+        background-color: white;
+
+        box-shadow: $dropdown-box-shadow;
+
+        z-index: $zindex-dropdown;
+
+        &--open {
+            display: block;
+        }
+    }
+
+    &__list {
+        padding: $dropdown-padding-y / 2 0;
+        margin: 0;
+    }
+
+    &__item {
+        font: $dropdown-font-size $font-family-base;
+        line-height: $line-height-base;
+        color: $dropdown-link-color;
+        padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+        cursor: pointer;
+
+        &:hover {
+            color: $dropdown-link-hover-color;
+            background-color: $dropdown-link-hover-bg;
+        }
+
+        &--chosen,
+        &--chosen:hover {
+            color: $dropdown-link-active-color;
+            background-color: $dropdown-link-active-bg;
+        }
+
+        &--chosen .text-primary {
+            color: white !important;
+        }
+    }
+
+    &--loading:after {
+        content: '';
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border: double 3px transparent;
+        border-radius: 50%;
+        background-image:
+            linear-gradient(white, white),
+            conic-gradient($secondary 0, transparent 360deg);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%) rotate(360deg);
+        
+        animation: preload 1.5s ease-out infinite;
+    }
+}
+
+@keyframes preload {
+    0% {
+      transform: translateY(-50%) rotate(360deg);
+    }
+    100% {
+      transform: translateY(-50%) rotate(0);
+    }
+  }

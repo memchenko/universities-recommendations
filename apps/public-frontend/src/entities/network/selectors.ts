@@ -1,3 +1,5 @@
+import { lensPath } from 'ramda';
+
 import { IStateWithNetwork, INetworkState } from './types';
 
 export function getAccessToken(
@@ -11,3 +13,5 @@ export function getRefreshToken(
 ): INetworkState['refreshToken'] {
     return state.network.refreshToken;
 }
+
+export const requestsLens = lensPath(['network', 'requests']);

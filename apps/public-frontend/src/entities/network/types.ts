@@ -39,9 +39,9 @@ export interface IRequest {
     [key: string]: IRequestData;
 }
 
-export interface IRequestData {
+export interface IRequestData<T = unknown> {
     status: RequestStatus;
-    data?: unknown;
+    data?: T;
 }
 
 export enum RequestStatus {

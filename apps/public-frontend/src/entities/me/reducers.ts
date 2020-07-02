@@ -10,10 +10,11 @@ import {
 import {
     IMe
 } from './types';
-import { IContact } from '../users';
+import { IContact, UserTypes } from '../users';
 
 const initialState: IMe = {
     id: -1,
+    userType: UserTypes.Enrollee,
     avatar: '',
     firstName: '',
     lastName: '',

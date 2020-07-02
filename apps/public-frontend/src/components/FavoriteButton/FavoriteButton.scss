@@ -1,0 +1,30 @@
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+
+.favorite-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+
+    &:focus,
+    &:active {
+        outline: none;
+        box-shadow: $btn-focus-box-shadow;
+    }
+
+    &__icon {
+        rect {
+            fill: $warning;
+        }
+
+        &--active path {
+            fill: $warning;
+        }
+    }
+
+    svg,
+    svg * {
+        pointer-events: none;
+    }
+}

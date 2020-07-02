@@ -6,7 +6,7 @@ import {
     setToken,
 } from './actions';
 import { createEmptyRequest } from './utils';
-import { INetworkState, IRequestData } from './types';
+import { INetworkState, IRequestData, IRequest } from './types';
 
 const initialState: INetworkState = {
     accessToken: '',
@@ -17,7 +17,7 @@ const initialState: INetworkState = {
 export default createReducer(initialState, handle => ([
     handle(setRequest, (state, { payload: { key, status, data } }) => {
         const request = compose<
-            INetworkState,
+            IRequest,
             IRequestData | undefined,
             IRequestData,
             IRequestData
@@ -25,15 +25,17 @@ export default createReducer(initialState, handle => ([
             clone,
             ifElse(
                 isNil,
-                identity,
                 always(createEmptyRequest()),
+                identity,
             ),
-            view<INetworkState, IRequestData>(key)
-        )(state);
+            view<IRequest, IRequestData>(key)
+        )(state.requests);
         request.status = status;
-        request.data = data;
-    
-        return over(key, () => request, state);
+        request.data = data || request.data;
+        
+        state.requests = over(key, () => request, state.requests);
+
+        return state;
     }),
     handle(setToken, (state, { payload: { type, value } }) => {
         return {

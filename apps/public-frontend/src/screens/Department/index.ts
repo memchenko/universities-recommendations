@@ -1,1 +1,1 @@
-export { default as Department } from './Department';
+export { default } from './Department';

@@ -1,0 +1,27 @@
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+
+.dictionary-value-input {
+    &__dropdown {
+        width: 50%;
+    }
+
+    &__dropdown button {
+        display: inline-block;
+        width: 100%;
+        padding-right: $btn-padding-x * 2;
+
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        position: relative;
+
+        &:after {
+            position: absolute;
+            top: 50%;
+            right: $btn-padding-x;
+            transform: translateY(-50%);
+        }
+    }
+}

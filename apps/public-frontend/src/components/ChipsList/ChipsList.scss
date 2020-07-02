@@ -1,0 +1,63 @@
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+
+.chips-list {
+    &__item {
+        display: inline-block;
+        max-width: 100px;
+    }
+
+    &__text {
+        display: inline-block;
+        width: calc(100% - 16px);
+
+        font: $font-size-sm $font-family-base;
+        line-height: 1;
+        color: $gray-600;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+    }
+
+    &__button {
+        display: inline-block;
+        width: 100%;
+
+        font: $font-size-sm $font-family-base;
+        line-height: 1;
+        color: $gray-700;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+        border: none;
+        background: $gray-200;
+        border-radius: add($font-size-base * $line-height-base / 2, 3);
+
+        cursor: pointer;
+
+        &:active,
+        &:hover {
+            color: $gray-200;
+            background: $danger;
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: $btn-focus-box-shadow;
+        }
+    }
+
+    &__icon {
+        display: inline-block;
+
+        vertical-align: middle;
+    }
+
+    &__icon path {
+        fill: $gray-600;
+    }
+}
