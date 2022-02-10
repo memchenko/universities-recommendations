@@ -21,7 +21,7 @@
     "bootstrap": "^4.5.0",
     "classnames": "^2.2.6",
     "deox": "^3.2.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "ramda": "^0.27.0",
     "react": "^16.13.1",
     "react-app-rewire-hot-loader": "^2.0.1",
